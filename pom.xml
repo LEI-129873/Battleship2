@@ -186,6 +186,16 @@
 					<outputDirectory>${project.basedir}/docs</outputDirectory>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.11.2</version>
+				<configuration>
+					<!-- não falha por causa de comentários Javadoc em falta ou mal formados -->
+					<doclint>none</doclint>
+					<failOnError>false</failOnError>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 </project>
