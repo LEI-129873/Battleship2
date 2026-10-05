@@ -71,6 +71,8 @@
 
 		<jackson.version>2.18.11</jackson.version>
 
+		<pdfbox.version>3.0.5</pdfbox.version>
+
 		<allure.version>2.31.0</allure.version>
 
 		<jetbrains.annotations.version>26.1.0</jetbrains.annotations.version>
@@ -120,6 +122,13 @@
 			<version>${jackson.version}</version>
 		</dependency>
 
+		<!-- Dependência para gerar o PDF -->
+		<dependency>
+			<groupId>org.apache.pdfbox</groupId>
+			<artifactId>pdfbox</artifactId>
+			<version>${pdfbox.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>io.qameta.allure</groupId>
 			<artifactId>allure-java-commons-test</artifactId>
@@ -133,6 +142,9 @@
 			<version>${jetbrains.annotations.version}</version>
 			<scope>compile</scope>
 		</dependency>
+
+
+
 	</dependencies>
 
 	<build>
