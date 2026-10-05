@@ -2,9 +2,11 @@ package battleship;
 
 import java.util.Scanner;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
+import org.apache.commons.lang3.time.StopWatch;
 
 /**
  * The type Tasks.
@@ -57,9 +59,10 @@ public class Tasks {
 		Scanner in = new Scanner(System.in);
 		String command = in.next();
 
-		while (!command.equalsIgnoreCase(DESISTIR) && !command.equalsIgnoreCase(QUIT) && !command.equalsIgnoreCase(EXIT)) {
+			StopWatch watch = new StopWatch();
+			watch.start();
 
-			switch (command.toLowerCase()) {
+			switch (command) {
 				case GERAFROTA:
 				case GENFLEET:
 					myFleet = Fleet.createRandom();
@@ -110,6 +113,8 @@ public class Tasks {
 						}
 
 						if (game.getRemainingShips() == 0) {
+							watch.stop();
+							System.out.println("Tempo de execução: " + watch.getTime() + " ms");
 							game.over();
 							System.exit(0);
 						}
@@ -137,6 +142,9 @@ public class Tasks {
 				default:
 					System.out.println(I18n.get("game.unknown.command", command));
 			}
+			watch.stop();
+			System.out.println("Tempo de execução: " + watch.getTime() + " ms");
+
 			System.out.print("> ");
 			command = in.next();
 		}
