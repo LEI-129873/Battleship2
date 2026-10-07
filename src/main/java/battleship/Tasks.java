@@ -3,9 +3,11 @@ package battleship;
 import java.io.IOException;
 import java.util.Scanner;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
+import org.apache.commons.lang3.time.StopWatch;
 
 /**
  * The type Tasks.
@@ -55,9 +57,15 @@ public class Tasks {
 		IGame game = null;
 		menuHelp();
 
-		System.out.print("> ");
 		Scanner in = new Scanner(System.in);
-		String command = in.next();
+
+		while (true) {
+			System.out.print("> ");
+			StopWatch watch = StopWatch.createStarted(); // começa a contar assim que o prompt aparece
+			String command = in.next();
+
+			if (command.equals(DESISTIR))
+				break;
 
 		while (!command.equalsIgnoreCase(DESISTIR) && !command.equalsIgnoreCase(QUIT) && !command.equalsIgnoreCase(EXIT)) {
 
@@ -92,6 +100,7 @@ public class Tasks {
 						game.printMyBoard(true, false);
 
 						if (game.getRemainingShips() == 0) {
+							printElapsed(watch);
 							game.over();
 							System.exit(0);
 						}
@@ -110,11 +119,9 @@ public class Tasks {
 								Thread.currentThread().interrupt();
 							}
 						}
-
-						if (game.getRemainingShips() == 0) {
-							game.over();
-							System.exit(0);
-						}
+						printElapsed(watch);
+						game.over();
+						System.exit(0);
 					}
 					break;
 				case TIROS:
@@ -149,10 +156,15 @@ public class Tasks {
 				default:
 					System.out.println(I18n.get("game.unknown.command", command));
 			}
-			System.out.print("> ");
-			command = in.next();
+			printElapsed(watch);
 		}
 		System.out.println(I18n.get("game.goodbye"));
+	}
+
+	private static void printElapsed(StopWatch watch) {
+		watch.stop();
+		double seconds = watch.getTime() / 1000.0;
+		System.out.printf("Tempo de execução: %.2f segundos%n", seconds);
 	}
 
 	/**
