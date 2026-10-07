@@ -133,6 +133,13 @@
 			<version>${jetbrains.annotations.version}</version>
 			<scope>compile</scope>
 		</dependency>
+
+		<!-- ICU4J: Internacionalização e formatação de mensagens -->
+		<dependency>
+			<groupId>com.ibm.icu</groupId>
+			<artifactId>icu4j</artifactId>
+			<version>74.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>
