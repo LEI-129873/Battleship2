@@ -132,9 +132,6 @@ public class Tasks {
 						}
 					}
 					break;
-                case AJUDA:
-                    menuHelp();
-                    break;
 				case AJUDA:
 				case HELP:
 					menuHelp();
@@ -162,18 +159,6 @@ public class Tasks {
 	 * This function provides help information about the menu commands.
 	 */
 	public static void menuHelp() {
-		System.out.println("======================= AJUDA DO MENU =========================");
-		System.out.println("Digite um dos comandos abaixo para interagir com o jogo:");
-		System.out.println("- " + GERAFROTA + ": Gera uma frota aleatória de navios.");
-		System.out.println("- " + LEFROTA + ": Permite criar e carregar uma frota personalizada.");
-		System.out.println("- " + STATUS + ": Mostra o status atual da frota.)");
-		System.out.println("- " + MAPA + ": Exibe o mapa da frota.");
-		System.out.println("- " + RAJADA + ": Realiza uma rajada de disparos.");
-		System.out.println("- " + SIMULA + ": Simula um jogo completo.");
-		System.out.println("- " + TIROS + ": Lista os tiros válidos realizados (* = tiro em navio, o = tiro na água)");
-		System.out.println("- " + PDF + ": Exporta o histórico da partida para PDF.");
-		System.out.println("- " + DESISTIR + ": Encerra o jogo.");
-		System.out.println("===============================================================");
 		System.out.println(I18n.get("help.title"));
 		System.out.println(I18n.get("help.subtitle"));
 		System.out.println(I18n.get("help.gerafrota"));
@@ -184,6 +169,7 @@ public class Tasks {
 		System.out.println(I18n.get("help.simula"));
 		System.out.println(I18n.get("help.tiros"));
 		System.out.println(I18n.get("help.lang"));
+		System.out.println(I18n.get("help.pdf"));
 		System.out.println(I18n.get("help.desistir"));
 		System.out.println(I18n.get("help.footer"));
 	}
