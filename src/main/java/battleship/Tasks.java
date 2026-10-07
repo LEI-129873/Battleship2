@@ -64,10 +64,9 @@ public class Tasks {
 			StopWatch watch = StopWatch.createStarted(); // começa a contar assim que o prompt aparece
 			String command = in.next();
 
-			if (command.equals(DESISTIR))
+			if (command.equalsIgnoreCase(DESISTIR) || command.equalsIgnoreCase(QUIT) || command.equalsIgnoreCase(EXIT)) {
 				break;
-
-		while (!command.equalsIgnoreCase(DESISTIR) && !command.equalsIgnoreCase(QUIT) && !command.equalsIgnoreCase(EXIT)) {
+			}
 
 			switch (command.toLowerCase()) {
 				case GERAFROTA:
