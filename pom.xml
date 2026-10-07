@@ -143,8 +143,12 @@
 			<scope>compile</scope>
 		</dependency>
 
-
-
+		<!-- ICU4J: Internacionalização e formatação de mensagens -->
+		<dependency>
+			<groupId>com.ibm.icu</groupId>
+			<artifactId>icu4j</artifactId>
+			<version>74.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -196,6 +200,16 @@
 				<version>3.12.0</version>
 				<configuration>
 					<outputDirectory>${project.basedir}/docs</outputDirectory>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.11.2</version>
+				<configuration>
+					<!-- não falha por causa de comentários Javadoc em falta ou mal formados -->
+					<doclint>none</doclint>
+					<failOnError>false</failOnError>
 				</configuration>
 			</plugin>
 		</plugins>
