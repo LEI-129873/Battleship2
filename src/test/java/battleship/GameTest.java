@@ -87,6 +87,31 @@ public class GameTest {
 	}
 
 	@Test
+	void recordMyMove() {
+		List<IPosition> positions = List.of(new Position(2, 3), new Position(2, 4), new Position(2, 5));
+		List<IGame.ShotResult> results = List.of(
+				new IGame.ShotResult(true, false, null, false),
+				new IGame.ShotResult(true, true, null, false),
+				new IGame.ShotResult(false, false, null, false));
+
+		game.recordMyMove(positions, results);
+
+		assertEquals(1, game.getMyMoves().size());
+		assertEquals(1, game.getMyMoves().get(0).getNumber());
+		assertEquals(positions, game.getMyMoves().get(0).getShots());
+		assertEquals(results, game.getMyMoves().get(0).getShotResults());
+	}
+
+	@Test
+	void recordMyMoveRequiresMatchingShotAndResultCounts() {
+		List<IPosition> positions = List.of(new Position(2, 3));
+		List<IGame.ShotResult> results = List.of();
+
+		assertThrows(IllegalArgumentException.class, () -> game.recordMyMove(positions, results));
+		assertTrue(game.getMyMoves().isEmpty());
+	}
+
+	@Test
 	void getRemainingShips() {
 		IFleet fleet = game.getMyFleet();
 		Ship ship1 = new Barge(Compass.NORTH, new Position(1, 1));

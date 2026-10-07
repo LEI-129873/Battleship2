@@ -210,6 +210,19 @@ public class Game implements IGame
 		return alienMoves;
 	}
 
+	@Override
+	public void recordMyMove(List<IPosition> shots, List<ShotResult> results)
+	{
+		assert shots != null;
+		assert results != null;
+
+		if (shots.size() != results.size()) {
+			throw new IllegalArgumentException("Each shot must have a corresponding result.");
+		}
+
+		myMoves.add(new Move(myMoves.size() + 1, new ArrayList<>(shots), new ArrayList<>(results)));
+	}
+
 	/**
 	 * Simulates a random firing action by the enemy, generating a set of unique shot coordinates
 	 * and serializing them into a JSON string. The method ensures that the random shots are valid
