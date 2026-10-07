@@ -33,6 +33,14 @@ public interface IGame
 	 */
 	void fireShots(List<IPosition> shots);
 
+	/**
+	 * Records the player's completed move and its results.
+	 *
+	 * @param shots the positions fired during the move
+	 * @param results the result corresponding to each position
+	 */
+	void recordMyMove(List<IPosition> shots, List<ShotResult> results);
+
 	record ShotResult(boolean valid, boolean repeated, IShip ship, boolean sunk) {}
 
 	/**

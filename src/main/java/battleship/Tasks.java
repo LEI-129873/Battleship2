@@ -1,5 +1,6 @@
 package battleship;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import ch.qos.logback.core.net.SyslogOutputStream;
@@ -18,12 +19,7 @@ public class Tasks {
 	private static final Logger LOGGER = LogManager.getLogger();
 
 	/**
-	 * The constant GOODBYE_MESSAGE.
-	 */
-	private static final String GOODBYE_MESSAGE = "Bons ventos!";
-
-	/**
-	 * Strings to be used by the user
+	 * Comandos em Português
 	 */
 	private static final String AJUDA = "ajuda";
 	private static final String GERAFROTA = "gerafrota";
@@ -34,6 +30,23 @@ public class Tasks {
 	private static final String MAPA = "mapa";
 	private static final String STATUS = "estado";
 	private static final String SIMULA = "simula";
+	private static final String PDF = "pdf";
+	private static final String IDIOMA = "idioma";
+
+	/**
+	 * Comandos em Inglês (aliases)
+	 */
+	private static final String HELP = "help";
+	private static final String GENFLEET = "genfleet";
+	private static final String LOADFLEET = "loadfleet";
+	private static final String QUIT = "quit";
+	private static final String EXIT = "exit";
+	private static final String FIRE = "fire";
+	private static final String SHOTS = "shots";
+	private static final String MAP = "map";
+	private static final String STATUS_EN = "status";
+	private static final String SIMULATE = "simulate";
+	private static final String LANG = "lang";
 
 	/**
 	 * This task also tests the fighting element of a round of three shots
@@ -54,26 +67,33 @@ public class Tasks {
 			if (command.equals(DESISTIR))
 				break;
 
-			switch (command) {
+		while (!command.equalsIgnoreCase(DESISTIR) && !command.equalsIgnoreCase(QUIT) && !command.equalsIgnoreCase(EXIT)) {
+
+			switch (command.toLowerCase()) {
 				case GERAFROTA:
+				case GENFLEET:
 					myFleet = Fleet.createRandom();
 					game = new Game(myFleet);
 					game.printMyBoard(false, true);
 					break;
 				case LEFROTA:
+				case LOADFLEET:
 					myFleet = buildFleet(in);
 					game = new Game(myFleet);
 					game.printMyBoard(false, true);
 					break;
 				case STATUS:
+				case STATUS_EN:
 					if (myFleet != null)
 						myFleet.printStatus();
 					break;
 				case MAPA:
+				case MAP:
 					if (myFleet != null)
 						game.printMyBoard(false, true);
 					break;
 				case RAJADA:
+				case FIRE:
 					if (game != null) {
 						game.readEnemyFire(in);
 						myFleet.printStatus();
@@ -87,6 +107,7 @@ public class Tasks {
 					}
 					break;
 				case SIMULA:
+				case SIMULATE:
 					if (game != null) {
 						while (game.getRemainingShips() > 0) {
 							game.randomEnemyFire();
@@ -104,18 +125,40 @@ public class Tasks {
 					}
 					break;
 				case TIROS:
+				case SHOTS:
 					if (game != null)
 						game.printMyBoard(true, true);
 					break;
+				case PDF:
+					if (game != null) {
+						try {
+							GamePDFExporter.generatePDF(game.getMyMoves(), game.getAlienMoves());
+							System.out.println("Histórico exportado para historico-partida.pdf");
+						} catch (IOException e) {
+							System.err.println("Não foi possível gerar o PDF: " + e.getMessage());
+						}
+					}
+					break;
 				case AJUDA:
+				case HELP:
 					menuHelp();
 					break;
+				case IDIOMA:
+				case LANG:
+					if (in.hasNext()) {
+						String novoIdioma = in.next();
+						I18n.setLanguage(novoIdioma);
+						System.out.println(I18n.get("game.language.changed"));
+					} else {
+						System.out.println(I18n.get("game.language.usage"));
+					}
+					break;
 				default:
-					System.out.println("Que comando é esse??? Repete ...");
+					System.out.println(I18n.get("game.unknown.command", command));
 			}
 			printElapsed(watch);
 		}
-		System.out.println(GOODBYE_MESSAGE);
+		System.out.println(I18n.get("game.goodbye"));
 	}
 
 	private static void printElapsed(StopWatch watch) {
@@ -128,30 +171,26 @@ public class Tasks {
 	 * This function provides help information about the menu commands.
 	 */
 	public static void menuHelp() {
-		System.out.println("======================= AJUDA DO MENU =========================");
-		System.out.println("Digite um dos comandos abaixo para interagir com o jogo:");
-		System.out.println("- " + GERAFROTA + ": Gera uma frota aleatória de navios.");
-		System.out.println("- " + LEFROTA + ": Permite criar e carregar uma frota personalizada.");
-		System.out.println("- " + STATUS + ": Mostra o status atual da frota.)");
-		System.out.println("- " + MAPA + ": Exibe o mapa da frota.");
-		System.out.println("- " + RAJADA + ": Realiza uma rajada de disparos.");
-		System.out.println("- " + SIMULA + ": Simula um jogo completo.");
-		System.out.println("- " + TIROS + ": Lista os tiros válidos realizados (* = tiro em navio, o = tiro na água)");
-		System.out.println("- " + DESISTIR + ": Encerra o jogo.");
-		System.out.println("===============================================================");
+		System.out.println(I18n.get("help.title"));
+		System.out.println(I18n.get("help.subtitle"));
+		System.out.println(I18n.get("help.gerafrota"));
+		System.out.println(I18n.get("help.lefrota"));
+		System.out.println(I18n.get("help.status"));
+		System.out.println(I18n.get("help.mapa"));
+		System.out.println(I18n.get("help.rajada"));
+		System.out.println(I18n.get("help.simula"));
+		System.out.println(I18n.get("help.tiros"));
+		System.out.println(I18n.get("help.lang"));
+		System.out.println(I18n.get("help.pdf"));
+		System.out.println(I18n.get("help.desistir"));
+		System.out.println(I18n.get("help.footer"));
 	}
-	/**
-	 * This operation allows the build up of a fleet, given user data
-	 *
-	 * @param in The scanner to read from
-	 * @return The fleet that has been built
-	 */
-	public static Fleet buildFleet(Scanner in) {
 
+	public static Fleet buildFleet(Scanner in) {
 		assert in != null;
 
 		Fleet fleet = new Fleet();
-		int i = 0; // i represents the total of successfully created ships
+		int i = 0;
 		while (i < Fleet.FLEET_SIZE) {
 			IShip s = readShip(in);
 			if (s != null) {
@@ -168,14 +207,7 @@ public class Tasks {
 		return fleet;
 	}
 
-	/**
-	 * This operation reads data about a ship, build it and returns it
-	 *
-	 * @param in The scanner to read from
-	 * @return The created ship based on the data that has been read
-	 */
 	public static Ship readShip(Scanner in) {
-
 		assert in != null;
 
 		String shipKind = in.next();
@@ -185,14 +217,7 @@ public class Tasks {
 		return Ship.buildShip(shipKind, bearing, pos);
 	}
 
-	/**
-	 * This operation allows reading a position in the map
-	 *
-	 * @param in The scanner to read from
-	 * @return The position that has been read
-	 */
 	public static Position readPosition(Scanner in) {
-
 		assert in != null;
 
 		int row = in.nextInt();
@@ -200,42 +225,31 @@ public class Tasks {
 		return new Position(row, column);
 	}
 
-	/**
-	 * This operation allows reading a position in the map
-	 *
-	 * @param in The scanner to read from
-	 * @return The classic position that has been read
-	 */
 	public static IPosition readClassicPosition(@NotNull Scanner in) {
-		// Verifica se ainda há tokens disponíveis
 		if (!in.hasNext()) {
 			throw new IllegalArgumentException("Nenhuma posição válida encontrada!");
 		}
 
-		String part1 = in.next(); // Primeiro token
+		String part1 = in.next();
 		String part2 = null;
 
 		if (in.hasNextInt()) {
-			part2 = in.next(); // Segundo token, se disponível
+			part2 = in.next();
 		}
 
 		String input = (part2 != null) ? part1 + part2 : part1;
-
-		// Normalizar o input para tratar letras maiúsculas e minúsculas
 		input = input.toUpperCase();
 
-		// Verificar os dois formatos possíveis: compactos e com espaço
 		if (input.matches("[A-Z]\\d+")) {
-			char column = input.charAt(0); // Extrair a coluna
-			int row = Integer.parseInt(input.substring(1)); // Extrair a linha
+			char column = input.charAt(0);
+			int row = Integer.parseInt(input.substring(1));
 			return new Position(column, row);
 		} else if (part2 != null && part1.matches("[A-Z]") && part2.matches("\\d+")) {
-			char column = part1.charAt(0); // Extrair a coluna
-			int row = Integer.parseInt(part2); // Extrair a linha
+			char column = part1.charAt(0);
+			int row = Integer.parseInt(part2);
 			return new Position(column, row);
 		} else {
 			throw new IllegalArgumentException("Formato inválido. Use 'A3', 'A 3' ou similar.");
 		}
 	}
-
 }

@@ -155,12 +155,14 @@ public class GameController {
 									   IGame game,
 									   GameSession session) {
 		List<ShotResult> results = new ArrayList<>();
+		List<IGame.ShotResult> moveResults = new ArrayList<>();
 		List<IPosition> alreadyThisTurn = new ArrayList<>();
 
 		for (IPosition pos : positions) {
 			boolean repeatedInTurn = alreadyThisTurn.contains(pos);
 			IGame.ShotResult sr = game.fireSingleShot(pos, repeatedInTurn);
 			alreadyThisTurn.add(pos);
+			moveResults.add(sr);
 
 			ShotResult dto  = new ShotResult();
 			dto.row         = String.valueOf(pos.getClassicRow());
@@ -181,6 +183,8 @@ public class GameController {
 			}
 			results.add(dto);
 		}
+
+		game.recordMyMove(positions, moveResults);
 
 		ShotResponse response  = new ShotResponse();
 		response.results       = results;
