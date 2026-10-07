@@ -44,13 +44,15 @@ public class Tasks {
 		IGame game = null;
 		menuHelp();
 
-		System.out.print("> ");
 		Scanner in = new Scanner(System.in);
-		String command = in.next();
-		while (!command.equals(DESISTIR)) {
 
-			StopWatch watch = new StopWatch();
-			watch.start();
+		while (true) {
+			System.out.print("> ");
+			StopWatch watch = StopWatch.createStarted(); // começa a contar assim que o prompt aparece
+			String command = in.next();
+
+			if (command.equals(DESISTIR))
+				break;
 
 			switch (command) {
 				case GERAFROTA:
@@ -78,6 +80,7 @@ public class Tasks {
 						game.printMyBoard(true, false);
 
 						if (game.getRemainingShips() == 0) {
+							printElapsed(watch);
 							game.over();
 							System.exit(0);
 						}
@@ -85,42 +88,40 @@ public class Tasks {
 					break;
 				case SIMULA:
 					if (game != null) {
-						while (game.getRemainingShips() > 0){
+						while (game.getRemainingShips() > 0) {
 							game.randomEnemyFire();
 							myFleet.printStatus();
 							game.printMyBoard(true, false);
 							try {
 								Thread.sleep(3000);
 							} catch (InterruptedException e) {
-								Thread.currentThread().interrupt(); // Best practice: restore interrupt status
+								Thread.currentThread().interrupt();
 							}
 						}
-
-						if (game.getRemainingShips() == 0) {
-							watch.stop();
-							System.out.println("Tempo de execução: " + watch.getTime() + " ms");
-							game.over();
-							System.exit(0);
-						}
+						printElapsed(watch);
+						game.over();
+						System.exit(0);
 					}
 					break;
 				case TIROS:
 					if (game != null)
 						game.printMyBoard(true, true);
 					break;
-                case AJUDA:
-                    menuHelp();
-                    break;
+				case AJUDA:
+					menuHelp();
+					break;
 				default:
 					System.out.println("Que comando é esse??? Repete ...");
 			}
-			watch.stop();
-			System.out.println("Tempo de execução: " + watch.getTime() + " ms");
-
-			System.out.print("> ");
-			command = in.next();
+			printElapsed(watch);
 		}
 		System.out.println(GOODBYE_MESSAGE);
+	}
+
+	private static void printElapsed(StopWatch watch) {
+		watch.stop();
+		double seconds = watch.getTime() / 1000.0;
+		System.out.printf("Tempo de execução: %.2f segundos%n", seconds);
 	}
 
 	/**
