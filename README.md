@@ -131,6 +131,13 @@ mvn test
 > Use the `-Dtest=ClassName` flag to run specific test suites during development.
 
 ---
+## 📸 Vídeo
+
+<a href="https://youtu.be/3gPEZaXW4Fw">
+  <img src="https://img.youtube.com/vi/3gPEZaXW4Fw/maxresdefault.jpg" alt="Vídeo de Demonstração do BattleShip2" width="600">
+</a>
+
+---
 
 ## 🤝 Contributing
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create.
