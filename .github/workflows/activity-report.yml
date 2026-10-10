@@ -1,0 +1,106 @@
+name: Estatísticas de atividade
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: read
+  pull-requests: read
+
+jobs:
+  generate-report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Gerar relatório de atividade
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require("fs");
+            const { owner, repo } = context.repo;
+            const participants = new Map();
+
+            function getParticipant(login) {
+              const key = login.toLowerCase();
+              if (!participants.has(key)) {
+                participants.set(key, {
+                  login,
+                  commits: 0,
+                  branches: 0,
+                  issues: 0,
+                  pullRequests: 0,
+                });
+              }
+              return participants.get(key);
+            }
+
+            const commits = await github.paginate(
+              "GET /repos/{owner}/{repo}/commits",
+              { owner, repo, per_page: 100 }
+            );
+            for (const commit of commits) {
+              const login = commit.author?.login || commit.committer?.login;
+              if (login) getParticipant(login).commits += 1;
+            }
+
+            const issues = await github.paginate(
+              "GET /repos/{owner}/{repo}/issues",
+              { owner, repo, state: "all", per_page: 100 }
+            );
+            for (const issue of issues) {
+              if (!issue.user?.login) continue;
+              const participant = getParticipant(issue.user.login);
+              if (issue.pull_request) participant.pullRequests += 1;
+              else participant.issues += 1;
+            }
+
+            const events = await github.paginate(
+              "GET /repos/{owner}/{repo}/events",
+              { owner, repo, per_page: 100 }
+            );
+            for (const event of events) {
+              if (
+                event.type === "CreateEvent" &&
+                event.payload?.ref_type === "branch" &&
+                event.actor?.login
+              ) {
+                getParticipant(event.actor.login).branches += 1;
+              }
+            }
+
+            const rows = [...participants.values()]
+              .sort((a, b) =>
+                b.commits - a.commits ||
+                b.pullRequests - a.pullRequests ||
+                b.issues - a.issues ||
+                a.login.localeCompare(b.login)
+              )
+              .map((person) =>
+                `| [@${person.login}](https://github.com/${person.login}) | ${person.commits} | ${person.branches} | ${person.issues} | ${person.pullRequests} |`
+              );
+
+            const generatedAt = new Date().toISOString();
+            const report = [
+              `# Atividade do projeto ${owner}/${repo}`,
+              "",
+              `Gerado em: ${generatedAt}`,
+              "",
+              "| Participante | Commits | Branches criadas* | Issues criadas | PRs criados |",
+              "| --- | ---: | ---: | ---: | ---: |",
+              ...(rows.length ? rows : ["| Nenhum participante encontrado | 0 | 0 | 0 | 0 |"]),
+              "",
+              "* Commits, issues e pull requests consideram o histórico acessível do repositório. Branches contam eventos de criação que o GitHub ainda disponibiliza (normalmente até 90 dias e limitados aos 300 eventos mais recentes); branches sem evento disponível não são contabilizadas.",
+              "",
+            ].join("\n");
+
+            fs.mkdirSync("activity-report", { recursive: true });
+            fs.writeFileSync("activity-report/atividade-projeto.md", report);
+            await core.summary.addRaw(report).write();
+
+      - name: Disponibilizar relatório para download
+        uses: actions/upload-artifact@v4
+        with:
+          name: atividade-projeto
+          path: activity-report/atividade-projeto.md
+          if-no-files-found: error
+          retention-days: 30
