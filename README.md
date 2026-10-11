@@ -132,7 +132,6 @@ mvn test
 > Use the `-Dtest=ClassName` flag to run specific test suites during development.
 
 ---
-## 📸 Vídeo
 
 ## 🧠 AI Play Prompt
 
@@ -405,6 +404,8 @@ declara vitória e termina imediatamente a estratégia.
 Não continues a gerar rajadas depois de toda a frota inimiga ter sido afundada.
 ```
 ---
+
+## 📸 Vídeo
 
 <a href="https://youtu.be/3gPEZaXW4Fw">
   <img src="https://img.youtube.com/vi/3gPEZaXW4Fw/maxresdefault.jpg" alt="Vídeo de Demonstração do BattleShip2" width="600">
