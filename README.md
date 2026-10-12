@@ -16,6 +16,7 @@
 - [Code Architecture](#-code-architecture)
 - [Roadmap](#-roadmap)
 - [AI Play Prompt](#-ai-play-prompt)
+- [Video](#-vídeo)
 - [Contributing](#-contributing)
 
 ---
@@ -407,7 +408,7 @@ Não continues a gerar rajadas depois de toda a frota inimiga ter sido afundada.
 
 ## 📸 Vídeo
 
-<a href="https://youtu.be/3gPEZaXW4Fw">
+<a href="https://youtu.be/JNrFmhJtx_M">
   <img src="https://img.youtube.com/vi/3gPEZaXW4Fw/maxresdefault.jpg" alt="Vídeo de Demonstração do BattleShip2" width="600">
 </a>
 
