@@ -11,5 +11,9 @@
   { "name": "type: BUG", "color": "B91C1C", "description": "Something isn't working" },
   { "name": "type: DOCUMENTATION", "color": "2563EB", "description": "Improvements or additions to documentation" },
   { "name": "type: ENHANCEMENT", "color": "A5F3FC", "description": "New feature or request" },
-  { "name": "type: QUESTION", "color": "D946EF", "description": "Further information is requested" }
+  { "name": "type: QUESTION", "color": "D946EF", "description": "Further information is requested" },
+  { "name": "lifecycle: TODO", "color": "D1D5DB", "description": "Issue is ready to be worked on" },
+  { "name": "lifecycle: IN PROGRESS", "color": "FBBF24", "description": "Work on this issue is currently in progress" },
+  { "name": "lifecycle: REVIEW", "color": "C084FC", "description": "Issue is awaiting review or validation" },
+  { "name": "lifecycle: DONE", "color": "22C55E", "description": "Issue is complete" }
 ]
