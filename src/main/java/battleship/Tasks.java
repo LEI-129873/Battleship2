@@ -32,6 +32,7 @@ public class Tasks {
 	private static final String SIMULA = "simula";
 	private static final String PDF = "pdf";
 	private static final String IDIOMA = "idioma";
+	private static final String TABULEIROS = "tabuleiros";
 
 	/**
 	 * Comandos em Inglês (aliases)
@@ -47,6 +48,7 @@ public class Tasks {
 	private static final String STATUS_EN = "status";
 	private static final String SIMULATE = "simulate";
 	private static final String LANG = "lang";
+	private static final String BOARDS = "boards";
 
 	/**
 	 * This task also tests the fighting element of a round of three shots
@@ -73,12 +75,14 @@ public class Tasks {
 					myFleet = Fleet.createRandom();
 					game = new Game(myFleet);
 					game.printMyBoard(false, true);
+					GameWindow.show(game);
 					break;
 				case LEFROTA:
 				case LOADFLEET:
 					myFleet = buildFleet(in);
 					game = new Game(myFleet);
 					game.printMyBoard(false, true);
+					GameWindow.show(game);
 					break;
 				case STATUS:
 				case STATUS_EN:
@@ -96,6 +100,7 @@ public class Tasks {
 						game.readEnemyFire(in);
 						myFleet.printStatus();
 						game.printMyBoard(true, false);
+						GameWindow.show(game);
 
 						if (game.getRemainingShips() == 0) {
 							printElapsed(watch);
@@ -111,6 +116,7 @@ public class Tasks {
 							game.randomEnemyFire();
 							myFleet.printStatus();
 							game.printMyBoard(true, false);
+							GameWindow.show(game);
 							try {
 								Thread.sleep(3000);
 							} catch (InterruptedException e) {
@@ -137,6 +143,11 @@ public class Tasks {
 						}
 					}
 					break;
+				case TABULEIROS:
+				case BOARDS:
+					if (game != null)
+						GameWindow.show(game);
+					break;
 				case AJUDA:
 				case HELP:
 					menuHelp();
@@ -147,6 +158,7 @@ public class Tasks {
 						String novoIdioma = in.next();
 						I18n.setLanguage(novoIdioma);
 						System.out.println(I18n.get("game.language.changed"));
+						GameWindow.show(game);
 					} else {
 						System.out.println(I18n.get("game.language.usage"));
 					}
@@ -156,6 +168,7 @@ public class Tasks {
 			}
 			printElapsed(watch);
 		}
+		GameWindow.close();
 		System.out.println(I18n.get("game.goodbye"));
 	}
 
@@ -178,6 +191,7 @@ public class Tasks {
 		System.out.println(I18n.get("help.rajada"));
 		System.out.println(I18n.get("help.simula"));
 		System.out.println(I18n.get("help.tiros"));
+		System.out.println(I18n.get("help.tabuleiros"));
 		System.out.println(I18n.get("help.lang"));
 		System.out.println(I18n.get("help.pdf"));
 		System.out.println(I18n.get("help.desistir"));
