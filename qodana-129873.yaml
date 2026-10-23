@@ -1,0 +1,30 @@
+# 129873 - Martim Barros
+version: "1.0"
+linter: jetbrains/qodana-jvm-community:2026.2
+projectJDK: "21"
+properties:
+  project.open.type: Maven
+profile:
+  name: empty
+  inspections:
+    - inspection: MethodCount
+      enabled: true
+      options:
+        m_limit: 35
+        ignoreGettersAndSetters: false
+        ignoreOverridingMethods: false
+
+    - inspection: ClassComplexity
+      enabled: true
+      options:
+        m_limit: 100
+
+    - inspection: FieldCount
+      enabled: true
+      options:
+        m_limit: 20
+        m_countConstantFields: false
+        m_considerStaticFinalFieldsConstant: true
+failureConditions:
+  severityThresholds:
+    any: 0
