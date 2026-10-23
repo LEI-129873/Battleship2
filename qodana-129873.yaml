@@ -1,7 +1,7 @@
 # 129873 - Martim Barros
 version: "1.0"
 linter: jetbrains/qodana-jvm-community:2026.2
-projectJDK: "17" # Confirma a versão do JDK do teu projeto
+projectJDK: "21"
 properties:
   project.open.type: Maven
 profile:
