@@ -1,7 +1,5 @@
 # 129873 - Martim Barros
-name: profile-129873
-base:
-  name: empty
+name: empty
 inspections:
   - inspection: MethodCount
     enabled: true
