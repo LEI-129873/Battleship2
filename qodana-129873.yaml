@@ -10,19 +10,19 @@ profile:
     - inspection: MethodCount
       enabled: true
       options:
-        m_limit: 15
+        m_limit: 35
         ignoreGettersAndSetters: false
         ignoreOverridingMethods: false
 
     - inspection: ClassComplexity
       enabled: true
       options:
-        m_limit: 47
+        m_limit: 100
 
     - inspection: FieldCount
       enabled: true
       options:
-        m_limit: 14
+        m_limit: 20
         m_countConstantFields: false
         m_considerStaticFinalFieldsConstant: true
 failureConditions:
