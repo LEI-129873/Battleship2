@@ -6,67 +6,6 @@ public final class LongMethodExample129825 {
     private LongMethodExample129825() {}
 
     public static String createHistory() {
-        StringBuilder history = new StringBuilder();
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        history.append("turno\n");
-        return history.toString();
+        return "turno\n".repeat(60);
     }
 }
