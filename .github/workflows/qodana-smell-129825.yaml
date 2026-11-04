@@ -1,0 +1,41 @@
+# 129825 - Pedro Coelho
+name: Qodana Long Method 129825
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main, feature/long-method-129825, feature/provoke-long-method-129825]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
+
+concurrency:
+  group: qodana-long-method-129825-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  qodana-129825:
+    name: Long Method gate 129825
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout do commit a analisar
+        uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+
+      - name: Analisar Long Method com Qodana
+        uses: JetBrains/qodana-action@v2026.2.2
+        with:
+          args: --config qodana-129825.yaml --save-report
+          # No PR, analisar as alterações; no push, analisar o projeto completo.
+          pr-mode: ${{ github.event_name == 'pull_request' }}
+          use-annotations: true
+          post-pr-comment: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository }}
+          upload-result: true
+          artifact-name: qodana-long-method-129825-${{ github.run_id }}
