@@ -32,7 +32,7 @@ jobs:
       - name: Analisar Long Method com Qodana
         uses: JetBrains/qodana-action@v2026.2.2
         with:
-          args: --config qodana-129825.yaml --save-report
+          args: --config qodana-129825.yaml --property project.open.type=Maven --save-report
           # No PR, analisar as alterações; no push, analisar o projeto completo.
           pr-mode: ${{ github.event_name == 'pull_request' }}
           use-annotations: true
