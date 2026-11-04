@@ -60,7 +60,9 @@ jobs:
           }
           expected = {"NonCommentSourceStatements": "20", "CyclomaticComplexity": "10"}
           if set(active) != set(expected):
-              raise SystemExit(f"Perfil inesperado: {sorted(active)}; esperado: {sorted(expected)}")
+              extras = sorted(set(active) - set(expected))
+              missing = sorted(set(expected) - set(active))
+              raise SystemExit(f"Perfil inesperado: {len(active)} inspeções ativas; em falta: {missing}; extras (até 10): {extras[:10]}")
           for inspection, limit in expected.items():
               tool = active[inspection]
               options = {option.get("name"): option.get("value") for option in tool.findall("option")}

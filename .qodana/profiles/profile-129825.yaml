@@ -2,6 +2,9 @@
 # Perfil externo: as propriedades ficam diretamente na raiz do ficheiro.
 name: empty
 inspections:
+  # Não herdar inspeções gerais do perfil por omissão.
+  - group: ALL
+    enabled: false
   # NCSS conta instruções, não linhas físicas de código (LOC).
   - inspection: NonCommentSourceStatements
     enabled: true
