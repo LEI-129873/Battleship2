@@ -1,0 +1,19 @@
+name: Checkstyle - Method Name (129873)
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  checkstyle-method:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Checkstyle Analysis (MethodName)
+        uses: nikitasim/checkstyle-action@v1.0.0
+        with:
+          configFile: 'checkstyle-129873.xml'
