@@ -14,6 +14,6 @@ public class Main
     {
 		System.out.println("***  Battleship  ***");
 
-		Tasks.Menu();
+		Tasks.menu();
     }
 }
