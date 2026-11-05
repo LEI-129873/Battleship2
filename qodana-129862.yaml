@@ -5,7 +5,12 @@ projectJDK: "21"
 properties:
   project.open.type: Maven
 profile:
-  path: .qodana/profiles/profile-129862.yaml
+  name: empty
+  inspections:
+    - inspection: ParametersPerMethod
+      enabled: true
+      options:
+        m_limit: 4
 failureConditions:
   severityThresholds:
     any: 0
