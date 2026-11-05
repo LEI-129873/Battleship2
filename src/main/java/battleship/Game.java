@@ -465,4 +465,8 @@ public class Game implements IGame
 			System.out.println("| Maldito sejas, Java Sparrow, eu voltarei, glub glub glub ... |");
 			System.out.println("+--------------------------------------------------------------+");
 	}
+
+	// Método de teste com demasiados parâmetros
+	public static void registarJogada(int x, int y, int ronda, String jogador, String navio,
+									  boolean acertou, boolean afundou, int pontos, long tempo) { }
 }
