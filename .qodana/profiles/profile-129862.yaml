@@ -1,0 +1,7 @@
+# 129862 - Joao Almeida
+name: empty
+inspections:
+  - inspection: MethodWithTooManyParameters   # confirmar no XML exportado
+    enabled: true
+    options:
+      m_limit: 4                              # confirmar o nome da opção no XML
