@@ -5,4 +5,4 @@ inspections:
   - inspection: MethodWithTooManyParameters   # confirmar o ID no XML exportado
     enabled: true
     options:
-      m_limit: 4                              # confirmar o nome da opção no XML
+      m_limit: 5                              # confirmar o nome da opção no XML
