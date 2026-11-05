@@ -1,0 +1,16 @@
+# 129862 - João Almeida
+version: "1.0"
+linter: jetbrains/qodana-jvm-community:2026.2
+projectJDK: "21"
+properties:
+  project.open.type: Maven
+profile:
+  name: empty
+  inspections:
+    - inspection: ParametersPerMethod
+      enabled: true
+      options:
+        m_limit: 5
+failureConditions:
+  severityThresholds:
+    any: 0
