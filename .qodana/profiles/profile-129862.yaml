@@ -1,7 +1,8 @@
 # 129862 - Joao Almeida
-name: empty
+name: smell-129862
+baseProfile: empty
 inspections:
-  - inspection: MethodWithTooManyParameters   # confirmar no XML exportado
+  - inspection: MethodWithTooManyParameters   # confirmar o ID no XML exportado
     enabled: true
     options:
       m_limit: 4                              # confirmar o nome da opção no XML
