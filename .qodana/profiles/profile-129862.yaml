@@ -2,7 +2,7 @@
 name: smell-129862
 baseProfile: empty
 inspections:
-  - inspection: MethodWithTooManyParameters   # confirmar o ID no XML exportado
+  - inspection: ParametersPerMethod
     enabled: true
     options:
-      m_limit: 5                              # confirmar o nome da opção no XML
+      m_limit: 5
