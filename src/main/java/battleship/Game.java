@@ -467,6 +467,6 @@ public class Game implements IGame
 	}
 
 	// Método de teste com demasiados parâmetros
-	public static void registarJogada(int x, int y, int ronda, String jogador, String navio,
-									  boolean acertou, boolean afundou, int pontos, long tempo) { }
+	// Agrupados agora num so objeto.
+	public static void registarJogada(Jogada jogada) { }
 }
