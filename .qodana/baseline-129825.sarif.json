@@ -1,0 +1,3031 @@
+{
+  "$schema": "https://raw.githubusercontent.com/schemastore/schemastore/master/src/schemas/json/sarif-2.1.0-rtm.5.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "QDJVM",
+          "fullName": "Qodana for JVM",
+          "version": "262.12298",
+          "rules": [],
+          "taxa": [
+            {
+              "id": "Java",
+              "name": "Java"
+            },
+            {
+              "id": "Java/Internationalization",
+              "name": "Internationalization",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Inheritance issues",
+              "name": "Inheritance issues",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Performance",
+              "name": "Performance",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Performance/Embedded",
+              "name": "Embedded",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java/Performance",
+                    "index": 3,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Initialization",
+              "name": "Initialization",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Declaration redundancy",
+              "name": "Declaration redundancy",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Threading issues",
+              "name": "Threading issues",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Plugin DevKit",
+              "name": "Plugin DevKit"
+            },
+            {
+              "id": "Plugin DevKit/Code",
+              "name": "Code",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Plugin DevKit",
+                    "index": 8,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Kotlin",
+              "name": "Kotlin"
+            },
+            {
+              "id": "Kotlin/Probable bugs",
+              "name": "Probable bugs",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Kotlin",
+                    "index": 10,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Kotlin/Style issues",
+              "name": "Style issues",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Kotlin",
+                    "index": 10,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Plugin DevKit/Plugin descriptor",
+              "name": "Plugin descriptor",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Plugin DevKit",
+                    "index": 8,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Properties files",
+              "name": "Properties files"
+            },
+            {
+              "id": "Java/Visibility",
+              "name": "Visibility",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Java language level issues",
+              "name": "Java language level issues",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "General",
+              "name": "General"
+            },
+            {
+              "id": "Java/Java language level migration aids",
+              "name": "Java language level migration aids",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Java language level migration aids/Java 8",
+              "name": "Java 8",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java/Java language level migration aids",
+                    "index": 18,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Class metrics",
+              "name": "Class metrics",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Class structure",
+              "name": "Class structure",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Memory",
+              "name": "Memory",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Code style issues",
+              "name": "Code style issues",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Probable bugs",
+              "name": "Probable bugs",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "JVM languages",
+              "name": "JVM languages"
+            },
+            {
+              "id": "JVM languages/Test frameworks",
+              "name": "Test frameworks",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "JVM languages",
+                    "index": 25,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "JUnit",
+              "name": "JUnit"
+            },
+            {
+              "id": "Java/Test frameworks",
+              "name": "Test frameworks",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Control flow issues",
+              "name": "Control flow issues",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Encapsulation",
+              "name": "Encapsulation",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Assignment issues",
+              "name": "Assignment issues",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Resource management",
+              "name": "Resource management",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Gradle",
+              "name": "Gradle"
+            },
+            {
+              "id": "Gradle/Best practices",
+              "name": "Best practices",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Gradle",
+                    "index": 33,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Error handling",
+              "name": "Error handling",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Numeric issues",
+              "name": "Numeric issues",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Java language level migration aids/Java 5",
+              "name": "Java 5",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java/Java language level migration aids",
+                    "index": 18,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Gradle/Probable bugs",
+              "name": "Probable bugs",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Gradle",
+                    "index": 33,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Data flow",
+              "name": "Data flow",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Naming conventions",
+              "name": "Naming conventions",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Naming conventions/Method",
+              "name": "Method",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java/Naming conventions",
+                    "index": 40,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Abstraction issues",
+              "name": "Abstraction issues",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "UI form",
+              "name": "UI form"
+            },
+            {
+              "id": "Kotlin/Redundant constructs",
+              "name": "Redundant constructs",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Kotlin",
+                    "index": 10,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Kotlin/Code migration",
+              "name": "Code migration",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Kotlin",
+                    "index": 10,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Verbose or redundant code constructs",
+              "name": "Verbose or redundant code constructs",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Numeric issues/Cast",
+              "name": "Cast",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java/Numeric issues",
+                    "index": 36,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Groovy",
+              "name": "Groovy"
+            },
+            {
+              "id": "Groovy/Style",
+              "name": "Style",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Groovy",
+                    "index": 48,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "XML",
+              "name": "XML"
+            },
+            {
+              "id": "HTML",
+              "name": "HTML"
+            },
+            {
+              "id": "XPath",
+              "name": "XPath"
+            },
+            {
+              "id": "Groovy/Potentially confusing code constructs",
+              "name": "Potentially confusing code constructs",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Groovy",
+                    "index": 48,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Java language level migration aids/Java 16",
+              "name": "Java 16",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java/Java language level migration aids",
+                    "index": 18,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/toString() issues",
+              "name": "toString() issues",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Modularization issues",
+              "name": "Modularization issues",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Security",
+              "name": "Security",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Kotlin/Naming conventions",
+              "name": "Naming conventions",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Kotlin",
+                    "index": 10,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Naming conventions/Class",
+              "name": "Class",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java/Naming conventions",
+                    "index": 40,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Packaging issues",
+              "name": "Packaging issues",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Logging",
+              "name": "Logging",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Dependency issues",
+              "name": "Dependency issues",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/JavaBeans issues",
+              "name": "JavaBeans issues",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Cloning issues",
+              "name": "Cloning issues",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Code maturity",
+              "name": "Code maturity",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Java language level migration aids/Java 26",
+              "name": "Java 26",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java/Java language level migration aids",
+                    "index": 18,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Serialization issues",
+              "name": "Serialization issues",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Java language level migration aids/Java 7",
+              "name": "Java 7",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java/Java language level migration aids",
+                    "index": 18,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Kotlin/Other problems",
+              "name": "Other problems",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Kotlin",
+                    "index": 10,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/TestNG",
+              "name": "TestNG",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Kotlin/Coroutine inspections",
+              "name": "Coroutine inspections",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Kotlin",
+                    "index": 10,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "RegExp",
+              "name": "RegExp"
+            },
+            {
+              "id": "Java/Method metrics",
+              "name": "Method metrics",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Qodana",
+              "name": "Qodana"
+            },
+            {
+              "id": "Java/Javadoc",
+              "name": "Javadoc",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Java language level migration aids/Java 21",
+              "name": "Java 21",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java/Java language level migration aids",
+                    "index": 18,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Groovy/Annotations",
+              "name": "Annotations",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Groovy",
+                    "index": 48,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Gradle/Validity issues",
+              "name": "Validity issues",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Gradle",
+                    "index": 33,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Lombok",
+              "name": "Lombok",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "EditorConfig",
+              "name": "EditorConfig"
+            },
+            {
+              "id": "Java/Java language level migration aids/Java 14",
+              "name": "Java 14",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java/Java language level migration aids",
+                    "index": 18,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Java language level migration aids/Java 25",
+              "name": "Java 25",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java/Java language level migration aids",
+                    "index": 18,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Concurrency annotation issues",
+              "name": "Concurrency annotation issues",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Finalization",
+              "name": "Finalization",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Groovy/Probable bugs",
+              "name": "Probable bugs",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Groovy",
+                    "index": 48,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Groovy/Control flow issues",
+              "name": "Control flow issues",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Groovy",
+                    "index": 48,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Groovy/Other",
+              "name": "Other",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Groovy",
+                    "index": 48,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Kotlin/Migration",
+              "name": "Migration",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Kotlin",
+                    "index": 10,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Kotlin/Migration/Gradle",
+              "name": "Gradle",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Kotlin/Migration",
+                    "index": 88,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Groovy/Threading issues",
+              "name": "Threading issues",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Groovy",
+                    "index": 48,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Groovy/Assignment issues",
+              "name": "Assignment issues",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Groovy",
+                    "index": 48,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Groovy/Naming conventions",
+              "name": "Naming conventions",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Groovy",
+                    "index": 48,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Groovy/Error handling",
+              "name": "Error handling",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Groovy",
+                    "index": 48,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Groovy/Validity issues",
+              "name": "Validity issues",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Groovy",
+                    "index": 48,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Groovy/GPath",
+              "name": "GPath",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Groovy",
+                    "index": 48,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Groovy/Method metrics",
+              "name": "Method metrics",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Groovy",
+                    "index": 48,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Groovy/Data flow",
+              "name": "Data flow",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Groovy",
+                    "index": 48,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Groovy/Declaration redundancy",
+              "name": "Declaration redundancy",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Groovy",
+                    "index": 48,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Portability",
+              "name": "Portability",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Kotlin/Java interop issues",
+              "name": "Java interop issues",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Kotlin",
+                    "index": 10,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Version control",
+              "name": "Version control"
+            },
+            {
+              "id": "Java/Bitwise operation issues",
+              "name": "Bitwise operation issues",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Language injection",
+              "name": "Language injection"
+            },
+            {
+              "id": "Plugin DevKit/Description file",
+              "name": "Description file",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Plugin DevKit",
+                    "index": 8,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Java language level migration aids/Java 9",
+              "name": "Java 9",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java/Java language level migration aids",
+                    "index": 18,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Reflective access",
+              "name": "Reflective access",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Imports",
+              "name": "Imports",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Logpoints",
+              "name": "Logpoints"
+            },
+            {
+              "id": "Java/Compiler issues",
+              "name": "Compiler issues",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "JSON and JSON5",
+              "name": "JSON and JSON5"
+            },
+            {
+              "id": "Code metrics",
+              "name": "Code metrics"
+            },
+            {
+              "id": "Kotlin/Numeric issues",
+              "name": "Numeric issues",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Kotlin",
+                    "index": 10,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Kotlin/Logging",
+              "name": "Logging",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Kotlin",
+                    "index": 10,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "JVM languages/Logging",
+              "name": "Logging",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "JVM languages",
+                    "index": 25,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Lombok",
+              "name": "Lombok"
+            },
+            {
+              "id": "Lombok/Kotlin",
+              "name": "Kotlin",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Lombok",
+                    "index": 115,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Internationalization",
+              "name": "Internationalization"
+            },
+            {
+              "id": "Java/Java language level migration aids/Java 23",
+              "name": "Java 23",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java/Java language level migration aids",
+                    "index": 18,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Maven",
+              "name": "Maven"
+            },
+            {
+              "id": "Kotlin/Migration/Maven",
+              "name": "Maven",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Kotlin/Migration",
+                    "index": 88,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/JUnit",
+              "name": "JUnit",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Manifest",
+              "name": "Manifest"
+            },
+            {
+              "id": "Kotlin/React",
+              "name": "React",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Kotlin",
+                    "index": 10,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Kotlin/React/Probable bugs",
+              "name": "Probable bugs",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Kotlin/React",
+                    "index": 123,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Probable bugs/Nullability problems",
+              "name": "Nullability problems",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java/Probable bugs",
+                    "index": 24,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Pattern validation",
+              "name": "Pattern validation"
+            },
+            {
+              "id": "Java/Java language level migration aids/Java 11",
+              "name": "Java 11",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java/Java language level migration aids",
+                    "index": 18,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Java language level migration aids/Java 10",
+              "name": "Java 10",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java/Java language level migration aids",
+                    "index": 18,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Lombok/Redundant modifiers",
+              "name": "Redundant modifiers",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java/Lombok",
+                    "index": 79,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Lombok/Redundant definitions",
+              "name": "Redundant definitions",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java/Lombok",
+                    "index": 79,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Structural search",
+              "name": "Structural search"
+            },
+            {
+              "id": "Java/Java language level migration aids/Java 15",
+              "name": "Java 15",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java/Java language level migration aids",
+                    "index": 18,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "Java/Properties files",
+              "name": "Properties files",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Java",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "RELAX NG",
+              "name": "RELAX NG"
+            },
+            {
+              "id": "Plugin DevKit/Workspace model",
+              "name": "Workspace model",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "Plugin DevKit",
+                    "index": 8,
+                    "toolComponent": {
+                      "name": "QDJVM"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "XSLT",
+              "name": "XSLT"
+            }
+          ],
+          "language": "en-US",
+          "contents": [
+            "localizedData",
+            "nonLocalizedData"
+          ],
+          "isComprehensive": false
+        },
+        "extensions": [
+          {
+            "name": "com.intellij.java",
+            "version": "262.12298.0",
+            "rules": [
+              {
+                "id": "CyclomaticComplexity",
+                "shortDescription": {
+                  "text": "Overly complex method"
+                },
+                "fullDescription": {
+                  "text": "Reports methods that have too many branch points. A branch point is one of the following: loop statement 'if' statement ternary expression 'catch' section expression with one or more '&&' or '||' operators inside 'switch' block with non-default branches Methods with too high cyclomatic complexity may be confusing and hard to test. Use the Method complexity limit field to specify the maximum allowed cyclomatic complexity for a method. Inspection ID: CyclomaticComplexity",
+                  "markdown": "Reports methods that have too many branch points.\n\nA branch point is one of the following:\n\n* loop statement\n* `if` statement\n* ternary expression\n* `catch` section\n* expression with one or more `&&` or `||` operators inside\n* `switch` block with non-default branches\n\nMethods with too high cyclomatic complexity may be confusing and hard to test.\n\nUse the **Method complexity limit** field to specify the maximum allowed cyclomatic complexity for a method.\n\n\nInspection ID: CyclomaticComplexity"
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "suppressToolId": "OverlyComplexMethod",
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High",
+                    "codeQualityCategory": "Code Style"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "Java/Method metrics",
+                      "index": 73,
+                      "toolComponent": {
+                        "name": "QDJVM"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "NonCommentSourceStatements",
+                "shortDescription": {
+                  "text": "Overly long method"
+                },
+                "fullDescription": {
+                  "text": "Reports methods whose number of statements exceeds the specified maximum. Methods with too many statements may be confusing and are a good sign that refactoring is necessary. The following statements are not counted: empty statements (semicolons) block statements 'for' loop initialization statements, that is, 'int i = ...' within a 'for(int i = ...;...)' statement 'for' loop update statements, that is, 'i += 2' within a 'for(int i = ...;...; i += 2)' statement Use the Maximum statements per method field to specify the maximum allowed number of statements in a method. Inspection ID: NonCommentSourceStatements",
+                  "markdown": "Reports methods whose number of statements exceeds the specified maximum.\n\nMethods with too many statements may be confusing and are a good sign that refactoring is necessary.\n\nThe following statements are not counted:\n\n* empty statements (semicolons)\n* block statements\n* `for` loop initialization statements, that is, `int i = ...` within a `for(int i = ...;...)` statement\n* `for` loop update statements, that is, `i += 2` within a `for(int i = ...;...; i += 2)` statement\n\nUse the **Maximum statements per method** field to specify the maximum allowed number of statements in a method.\n\n\nInspection ID: NonCommentSourceStatements"
+                },
+                "defaultConfiguration": {
+                  "enabled": true,
+                  "level": "warning",
+                  "parameters": {
+                    "suppressToolId": "OverlyLongMethod",
+                    "ideaSeverity": "WARNING",
+                    "qodanaSeverity": "High",
+                    "codeQualityCategory": "Code Style"
+                  }
+                },
+                "relationships": [
+                  {
+                    "target": {
+                      "id": "Java/Method metrics",
+                      "index": 73,
+                      "toolComponent": {
+                        "name": "QDJVM"
+                      }
+                    },
+                    "kinds": [
+                      "superset"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "language": "en-US",
+            "contents": [
+              "localizedData",
+              "nonLocalizedData"
+            ],
+            "isComprehensive": false
+          }
+        ]
+      },
+      "language": "en-US",
+      "originalUriBaseIds": {
+        "SRCROOT": {
+          "description": {
+            "text": "The subdirectory within the project that was analyzed (--project-dir qodana CLI parameter)"
+          }
+        }
+      },
+      "results": [
+        {
+          "ruleId": "NonCommentSourceStatements",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "'drawCell' is too long (# Non-comment source statements = 35)",
+            "markdown": "`drawCell` is too long (# Non-comment source statements = 35)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/battleship/BoardPanel.java",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 91,
+                  "startColumn": 14,
+                  "charOffset": 2931,
+                  "charLength": 8,
+                  "snippet": {
+                    "text": "drawCell"
+                  },
+                  "sourceLanguage": "JAVA"
+                },
+                "contextRegion": {
+                  "startLine": 89,
+                  "startColumn": 1,
+                  "charOffset": 2846,
+                  "charLength": 284,
+                  "snippet": {
+                    "text": "\t * Desenha uma célula num dado estado. Usado também pela legenda.\n\t */\n\tstatic void drawCell(Graphics2D g2, CellState state, int x, int y, int size) {\n\t\tGraphics2D g = (Graphics2D) g2.create();\n\t\tg.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);"
+                  },
+                  "sourceLanguage": "JAVA"
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "BattleshipGamePlayer",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v2": "a3bcefa4290a0874",
+            "equalIndicator/v1": "228d6d20c197f57bd591433537f7c8dd933488ecd962aba67fad900a170f349c"
+          },
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "qodanaSeverity": "High",
+            "problemType": "REGULAR",
+            "tags": [
+              "JAVA"
+            ]
+          }
+        },
+        {
+          "ruleId": "CyclomaticComplexity",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Overly complex method 'opponentBoard()' (cyclomatic complexity = 11)",
+            "markdown": "Overly complex method `opponentBoard()` (cyclomatic complexity = 11)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/battleship/BoardState.java",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 57,
+                  "startColumn": 30,
+                  "charOffset": 1627,
+                  "charLength": 13,
+                  "snippet": {
+                    "text": "opponentBoard"
+                  },
+                  "sourceLanguage": "JAVA"
+                },
+                "contextRegion": {
+                  "startLine": 55,
+                  "startColumn": 1,
+                  "charOffset": 1530,
+                  "charLength": 160,
+                  "snippet": {
+                    "text": "\t * @return matriz [linha][coluna] com o estado de cada célula\n\t */\n\tpublic static CellState[][] opponentBoard(List<IMove> myMoves) {\n\t\tassert myMoves != null;\n"
+                  },
+                  "sourceLanguage": "JAVA"
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "BattleshipGamePlayer",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v2": "f9e38cee3613bcd9",
+            "equalIndicator/v1": "df36481d839276c81cbc89a2bde43a54a732e30c6090055be191c4cd474fba7f"
+          },
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "qodanaSeverity": "High",
+            "problemType": "REGULAR",
+            "tags": [
+              "JAVA"
+            ]
+          }
+        },
+        {
+          "ruleId": "NonCommentSourceStatements",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "'randomEnemyFire' is too long (# Non-comment source statements = 28)",
+            "markdown": "`randomEnemyFire` is too long (# Non-comment source statements = 28)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/battleship/Game.java",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 235,
+                  "startColumn": 16,
+                  "charOffset": 7682,
+                  "charLength": 15,
+                  "snippet": {
+                    "text": "randomEnemyFire"
+                  },
+                  "sourceLanguage": "JAVA"
+                },
+                "contextRegion": {
+                  "startLine": 233,
+                  "startColumn": 1,
+                  "charOffset": 7568,
+                  "charLength": 209,
+                  "snippet": {
+                    "text": "\t * @throws RuntimeException if there is an error during the JSON serialization of the shots.\n\t */\n\tpublic String randomEnemyFire() {\n\n\t\t// Criar uma instância de Random com uma seed baseada no timestamp atual"
+                  },
+                  "sourceLanguage": "JAVA"
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "BattleshipGamePlayer",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v2": "b0803b05e52a52d7",
+            "equalIndicator/v1": "3ff4267163d87d30ea8c6043f6882c236ba45f2f760ba543e04d7a75782f8011"
+          },
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "qodanaSeverity": "High",
+            "problemType": "REGULAR",
+            "tags": [
+              "JAVA"
+            ]
+          }
+        },
+        {
+          "ruleId": "NonCommentSourceStatements",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "'generatePDF' is too long (# Non-comment source statements = 25)",
+            "markdown": "`generatePDF` is too long (# Non-comment source statements = 25)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/battleship/GamePDFExporter.java",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 27,
+                  "startColumn": 24,
+                  "charOffset": 855,
+                  "charLength": 11,
+                  "snippet": {
+                    "text": "generatePDF"
+                  },
+                  "sourceLanguage": "JAVA"
+                },
+                "contextRegion": {
+                  "startLine": 25,
+                  "startColumn": 1,
+                  "charOffset": 825,
+                  "charLength": 204,
+                  "snippet": {
+                    "text": "    }\n\n    public static void generatePDF(List<IMove> myPlays, List<IMove> alienMoves, Path destination)\n            throws IOException {\n        Objects.requireNonNull(myPlays, \"myPlays cannot be null\");"
+                  },
+                  "sourceLanguage": "JAVA"
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "BattleshipGamePlayer",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v2": "05ac41764a2e1373",
+            "equalIndicator/v1": "122a8059536f433b0b1d66d674890616382a477dbf4871ca544c9bccea4c20ba"
+          },
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "qodanaSeverity": "High",
+            "problemType": "REGULAR",
+            "tags": [
+              "JAVA"
+            ]
+          }
+        },
+        {
+          "ruleId": "CyclomaticComplexity",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Overly complex method 'processEnemyFire()' (cyclomatic complexity = 37)",
+            "markdown": "Overly complex method `processEnemyFire()` (cyclomatic complexity = 37)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/battleship/Move.java",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 66,
+                  "startColumn": 16,
+                  "charOffset": 1853,
+                  "charLength": 16,
+                  "snippet": {
+                    "text": "processEnemyFire"
+                  },
+                  "sourceLanguage": "JAVA"
+                },
+                "contextRegion": {
+                  "startLine": 64,
+                  "startColumn": 1,
+                  "charOffset": 1822,
+                  "charLength": 89,
+                  "snippet": {
+                    "text": "\t */\n\t@Override\n\tpublic String processEnemyFire(boolean verbose) {\n\n\t\tint validShots = 0;"
+                  },
+                  "sourceLanguage": "JAVA"
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "BattleshipGamePlayer",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v2": "2a5ad38ececd1b85",
+            "equalIndicator/v1": "9776b0e9a84ab1de52d52b9ba0ef44bbb448104a23cd0b8cc34ddc8e44e4db19"
+          },
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "qodanaSeverity": "High",
+            "problemType": "REGULAR",
+            "tags": [
+              "JAVA"
+            ]
+          }
+        },
+        {
+          "ruleId": "NonCommentSourceStatements",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "'processEnemyFire' is too long (# Non-comment source statements = 77)",
+            "markdown": "`processEnemyFire` is too long (# Non-comment source statements = 77)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/battleship/Move.java",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 66,
+                  "startColumn": 16,
+                  "charOffset": 1853,
+                  "charLength": 16,
+                  "snippet": {
+                    "text": "processEnemyFire"
+                  },
+                  "sourceLanguage": "JAVA"
+                },
+                "contextRegion": {
+                  "startLine": 64,
+                  "startColumn": 1,
+                  "charOffset": 1822,
+                  "charLength": 89,
+                  "snippet": {
+                    "text": "\t */\n\t@Override\n\tpublic String processEnemyFire(boolean verbose) {\n\n\t\tint validShots = 0;"
+                  },
+                  "sourceLanguage": "JAVA"
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "BattleshipGamePlayer",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v2": "abdcab9f56bcf255",
+            "equalIndicator/v1": "21eea4ca940bb5d1dc02b3836c821e6136c5d4fffc03f668a06fdbac395957a3"
+          },
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "qodanaSeverity": "High",
+            "problemType": "REGULAR",
+            "tags": [
+              "JAVA"
+            ]
+          }
+        },
+        {
+          "ruleId": "NonCommentSourceStatements",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "'buildShip' is too long (# Non-comment source statements = 23)",
+            "markdown": "`buildShip` is too long (# Non-comment source statements = 23)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/battleship/Ship.java",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 45,
+                  "startColumn": 14,
+                  "charOffset": 785,
+                  "charLength": 9,
+                  "snippet": {
+                    "text": "buildShip"
+                  },
+                  "sourceLanguage": "JAVA"
+                },
+                "contextRegion": {
+                  "startLine": 43,
+                  "startColumn": 1,
+                  "charOffset": 748,
+                  "charLength": 127,
+                  "snippet": {
+                    "text": "\t * @return s ship\n\t */\n\tstatic Ship buildShip(String shipKind, Compass bearing, Position pos)\n    {\n\t\tassert shipKind != null;"
+                  },
+                  "sourceLanguage": "JAVA"
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "BattleshipGamePlayer",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v2": "5c4c5a28266ee7d4",
+            "equalIndicator/v1": "ad88b3e91fb8fdca3d721c2a97a6bf335bd6292509880a9ada41def6b793ffe8"
+          },
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "qodanaSeverity": "High",
+            "problemType": "REGULAR",
+            "tags": [
+              "JAVA"
+            ]
+          }
+        },
+        {
+          "ruleId": "CyclomaticComplexity",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Overly complex method 'menu()' (cyclomatic complexity = 28)",
+            "markdown": "Overly complex method `menu()` (cyclomatic complexity = 28)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/battleship/Tasks.java",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 55,
+                  "startColumn": 21,
+                  "charOffset": 1726,
+                  "charLength": 4,
+                  "snippet": {
+                    "text": "menu"
+                  },
+                  "sourceLanguage": "JAVA"
+                },
+                "contextRegion": {
+                  "startLine": 53,
+                  "startColumn": 1,
+                  "charOffset": 1629,
+                  "charLength": 131,
+                  "snippet": {
+                    "text": "\t * This task also tests the fighting element of a round of three shots\n\t */\n\tpublic static void menu() {\n\n\t\tIFleet myFleet = null;"
+                  },
+                  "sourceLanguage": "JAVA"
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "BattleshipGamePlayer",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v2": "51bb099975f9036e",
+            "equalIndicator/v1": "c6141c06a21b22177367f3d32b93bbc649590c719ce8b018466694b061413c35"
+          },
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "qodanaSeverity": "High",
+            "problemType": "REGULAR",
+            "tags": [
+              "JAVA"
+            ]
+          }
+        },
+        {
+          "ruleId": "NonCommentSourceStatements",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "'menu' is too long (# Non-comment source statements = 98)",
+            "markdown": "`menu` is too long (# Non-comment source statements = 98)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/battleship/Tasks.java",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 55,
+                  "startColumn": 21,
+                  "charOffset": 1726,
+                  "charLength": 4,
+                  "snippet": {
+                    "text": "menu"
+                  },
+                  "sourceLanguage": "JAVA"
+                },
+                "contextRegion": {
+                  "startLine": 53,
+                  "startColumn": 1,
+                  "charOffset": 1629,
+                  "charLength": 131,
+                  "snippet": {
+                    "text": "\t * This task also tests the fighting element of a round of three shots\n\t */\n\tpublic static void menu() {\n\n\t\tIFleet myFleet = null;"
+                  },
+                  "sourceLanguage": "JAVA"
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "BattleshipGamePlayer",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v2": "71d4f1fc85e7149e",
+            "equalIndicator/v1": "86cb2fd3da6bace01442a008e5c002feb4ea5093d8290b8853832d73ff0574e6"
+          },
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "qodanaSeverity": "High",
+            "problemType": "REGULAR",
+            "tags": [
+              "JAVA"
+            ]
+          }
+        },
+        {
+          "ruleId": "CyclomaticComplexity",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Overly complex method 'computeShots()' (cyclomatic complexity = 19)",
+            "markdown": "Overly complex method `computeShots()` (cyclomatic complexity = 19)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/restserver/AiShotStrategy.java",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 31,
+                  "startColumn": 25,
+                  "charOffset": 1044,
+                  "charLength": 12,
+                  "snippet": {
+                    "text": "computeShots"
+                  },
+                  "sourceLanguage": "JAVA"
+                },
+                "contextRegion": {
+                  "startLine": 29,
+                  "startColumn": 1,
+                  "charOffset": 952,
+                  "charLength": 174,
+                  "snippet": {
+                    "text": "\t * @return      a list of exactly Game.NUMBER_SHOTS positions\n\t */\n\tpublic List<IPosition> computeShots(IGame game) {\n\n\t\t// Build set of all positions already shot by the AI"
+                  },
+                  "sourceLanguage": "JAVA"
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "BattleshipGamePlayer",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v2": "6f7906823bda19ee",
+            "equalIndicator/v1": "11ffe53cf32e9a7cefc1ada6bd6959ab4c0e68b5ff1fa23815afe1eff24370d4"
+          },
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "qodanaSeverity": "High",
+            "problemType": "REGULAR",
+            "tags": [
+              "JAVA"
+            ]
+          }
+        },
+        {
+          "ruleId": "NonCommentSourceStatements",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "'computeShots' is too long (# Non-comment source statements = 31)",
+            "markdown": "`computeShots` is too long (# Non-comment source statements = 31)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/restserver/AiShotStrategy.java",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 31,
+                  "startColumn": 25,
+                  "charOffset": 1044,
+                  "charLength": 12,
+                  "snippet": {
+                    "text": "computeShots"
+                  },
+                  "sourceLanguage": "JAVA"
+                },
+                "contextRegion": {
+                  "startLine": 29,
+                  "startColumn": 1,
+                  "charOffset": 952,
+                  "charLength": 174,
+                  "snippet": {
+                    "text": "\t * @return      a list of exactly Game.NUMBER_SHOTS positions\n\t */\n\tpublic List<IPosition> computeShots(IGame game) {\n\n\t\t// Build set of all positions already shot by the AI"
+                  },
+                  "sourceLanguage": "JAVA"
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "BattleshipGamePlayer",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v2": "f70d55a58b57c175",
+            "equalIndicator/v1": "3516514375a07bf9da8575443d2134ef7cff9ec1a441e8de63a730abce936d16"
+          },
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "qodanaSeverity": "High",
+            "problemType": "REGULAR",
+            "tags": [
+              "JAVA"
+            ]
+          }
+        },
+        {
+          "ruleId": "NonCommentSourceStatements",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "'sendShots' is too long (# Non-comment source statements = 32)",
+            "markdown": "`sendShots` is too long (# Non-comment source statements = 32)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/restserver/CallbackClient.java",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 47,
+                  "startColumn": 17,
+                  "charOffset": 1430,
+                  "charLength": 9,
+                  "snippet": {
+                    "text": "sendShots"
+                  },
+                  "sourceLanguage": "JAVA"
+                },
+                "contextRegion": {
+                  "startLine": 45,
+                  "startColumn": 1,
+                  "charOffset": 1323,
+                  "charLength": 240,
+                  "snippet": {
+                    "text": "\t * @return true if the callback succeeded and results were processed; false on error\n\t */\n\tpublic boolean sendShots(GameSession session, List<IPosition> aiShots) {\n\n\t\t// ── 1. Build m2a request body ────────────────────────────────────────"
+                  },
+                  "sourceLanguage": "JAVA"
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "BattleshipGamePlayer",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v2": "e046ebb1e7608b54",
+            "equalIndicator/v1": "5c6214d51ccc15749df482fa973fa3de0ce6752cb23a6047cab38d66eaf0e790"
+          },
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "qodanaSeverity": "High",
+            "problemType": "REGULAR",
+            "tags": [
+              "JAVA"
+            ]
+          }
+        },
+        {
+          "ruleId": "CyclomaticComplexity",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Overly complex method 'receiveShots()' (cyclomatic complexity = 12)",
+            "markdown": "Overly complex method `receiveShots()` (cyclomatic complexity = 12)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/restserver/GameController.java",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 90,
+                  "startColumn": 27,
+                  "charOffset": 3358,
+                  "charLength": 12,
+                  "snippet": {
+                    "text": "receiveShots"
+                  },
+                  "sourceLanguage": "JAVA"
+                },
+                "contextRegion": {
+                  "startLine": 88,
+                  "startColumn": 1,
+                  "charOffset": 3289,
+                  "charLength": 159,
+                  "snippet": {
+                    "text": "\t */\n\t@PostMapping(\"/game/{gameId}/shots\")\n\tpublic ResponseEntity<?> receiveShots(@PathVariable String gameId,\n\t\t\t\t\t\t\t\t\t\t  @RequestBody ShotRequest request) {\n"
+                  },
+                  "sourceLanguage": "JAVA"
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "BattleshipGamePlayer",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v2": "96521247850e60da",
+            "equalIndicator/v1": "f944f667d8b53141e38469c5642d3af2476005593ece34de92ffb21e4f21ceff"
+          },
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "qodanaSeverity": "High",
+            "problemType": "REGULAR",
+            "tags": [
+              "JAVA"
+            ]
+          }
+        },
+        {
+          "ruleId": "NonCommentSourceStatements",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "'receiveShots' is too long (# Non-comment source statements = 25)",
+            "markdown": "`receiveShots` is too long (# Non-comment source statements = 25)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/restserver/GameController.java",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 90,
+                  "startColumn": 27,
+                  "charOffset": 3358,
+                  "charLength": 12,
+                  "snippet": {
+                    "text": "receiveShots"
+                  },
+                  "sourceLanguage": "JAVA"
+                },
+                "contextRegion": {
+                  "startLine": 88,
+                  "startColumn": 1,
+                  "charOffset": 3289,
+                  "charLength": 159,
+                  "snippet": {
+                    "text": "\t */\n\t@PostMapping(\"/game/{gameId}/shots\")\n\tpublic ResponseEntity<?> receiveShots(@PathVariable String gameId,\n\t\t\t\t\t\t\t\t\t\t  @RequestBody ShotRequest request) {\n"
+                  },
+                  "sourceLanguage": "JAVA"
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "BattleshipGamePlayer",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v2": "82f798876baaf7d2",
+            "equalIndicator/v1": "960c313c09e5bb8051265b4a162ebf748b9b1b3d7925041c0c4644b809b32fd4"
+          },
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "qodanaSeverity": "High",
+            "problemType": "REGULAR",
+            "tags": [
+              "JAVA"
+            ]
+          }
+        },
+        {
+          "ruleId": "NonCommentSourceStatements",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "'evaluateShots' is too long (# Non-comment source statements = 30)",
+            "markdown": "`evaluateShots` is too long (# Non-comment source statements = 30)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/restserver/GameController.java",
+                  "uriBaseId": "SRCROOT"
+                },
+                "region": {
+                  "startLine": 154,
+                  "startColumn": 23,
+                  "charOffset": 5977,
+                  "charLength": 13,
+                  "snippet": {
+                    "text": "evaluateShots"
+                  },
+                  "sourceLanguage": "JAVA"
+                },
+                "contextRegion": {
+                  "startLine": 152,
+                  "startColumn": 1,
+                  "charOffset": 5865,
+                  "charLength": 211,
+                  "snippet": {
+                    "text": "\t * Delegates to the existing Game.fireSingleShot() so all existing logic is reused.\n\t */\n\tprivate ShotResponse evaluateShots(List<IPosition> positions,\n\t\t\t\t\t\t\t\t\t   IGame game,\n\t\t\t\t\t\t\t\t\t   GameSession session) {"
+                  },
+                  "sourceLanguage": "JAVA"
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "BattleshipGamePlayer",
+                  "kind": "module"
+                }
+              ]
+            }
+          ],
+          "partialFingerprints": {
+            "equalIndicator/v2": "5718ad45cf648115",
+            "equalIndicator/v1": "5b45d7a20e53d985aa4dbc33eb810f2f3e3057c29d2e40721bb5cd01f6f87a59"
+          },
+          "properties": {
+            "ideaSeverity": "WARNING",
+            "qodanaSeverity": "High",
+            "problemType": "REGULAR",
+            "tags": [
+              "JAVA"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
