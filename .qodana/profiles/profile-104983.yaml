@@ -1,12 +1,11 @@
 # 104983 - Gonçalo Sena Esteves
 # Shotgun Surgery: aproxima CC > MANY (Lanza & Marinescu, p. 134) com o nº de classes dependentes.
-version: "1.0"
-profile:
-  base:
-    name: empty
-  inspections:
-    - inspection: ClassWithTooManyDependents
-      enabled: true
-      severity: WARNING
-      options:
-        limit: 7
+# Ficheiro de perfil externo: as chaves ficam na raiz (o formato "profile: base:" foi ignorado pelo linter).
+name: shotgun-surgery-104983
+baseProfile: empty
+inspections:
+  - inspection: ClassWithTooManyDependents
+    enabled: true
+    severity: WARNING
+    options:
+      limit: 7
