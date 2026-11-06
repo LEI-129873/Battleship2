@@ -1,0 +1,8 @@
+# 129862 - Joao Almeida
+name: smell-129862
+baseProfile: empty
+inspections:
+  - inspection: ParametersPerMethod
+    enabled: true
+    options:
+      m_limit: 5
