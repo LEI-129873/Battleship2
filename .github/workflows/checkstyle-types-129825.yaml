@@ -22,14 +22,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Checkout do commit a analisar
-        uses: actions/checkout@v7.0.1
-        with:
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
-          fetch-depth: 0
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Verificar nomes de classes e interfaces
-        uses: dbelyaev/action-checkstyle@31843784e30f5135d3e1c786b73f915e2e2708f2 # v4.5.0
+        uses: dbelyaev/action-checkstyle@v4.5.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           checkstyle_config: checkstyle-129825.xml
