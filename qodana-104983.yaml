@@ -1,0 +1,10 @@
+# 104983 - Gonçalo Sena Esteves
+version: "1.0"
+linter: jetbrains/qodana-jvm-community:2026.2
+projectJDK: "21"
+profile:
+  path: .qodana/profiles/profile-104983.yaml
+failureConditions:
+  severityThresholds:
+    # O projeto já tem 8 classes com mais de 7 dependentes: tolera esses 8 e falha a partir do 9.º.
+    any: 8
