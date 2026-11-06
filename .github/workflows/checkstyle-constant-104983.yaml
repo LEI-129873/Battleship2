@@ -1,0 +1,35 @@
+# 104983 - Gonçalo Sena Esteves
+name: Checkstyle - Constantes (104983)
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  checks: write
+
+jobs:
+  checkstyle-constant-104983:
+    name: Checkstyle ConstantName 104983
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7.0.1
+
+      - name: Verificar nomes de constantes
+        uses: dbelyaev/action-checkstyle@v4.5.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          checkstyle_config: checkstyle-104983.xml
+          checkstyle_version: '14.4.0'
+          reporter: github-check
+          level: error
+          # nofilter: verifica todos os ficheiros, não só as linhas alteradas no PR.
+          filter_mode: nofilter
+          # Sem fail_level o job passa mesmo com violações (o valor por omissão é "none").
+          fail_level: error
+          reviewdog_flags: -name=checkstyle-constant-104983
