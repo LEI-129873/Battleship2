@@ -1,0 +1,12 @@
+# 104983 - Gonçalo Sena Esteves
+# Shotgun Surgery: aproxima CC > MANY (Lanza & Marinescu, p. 134) com o nº de classes dependentes.
+version: "1.0"
+profile:
+  base:
+    name: empty
+  inspections:
+    - inspection: ClassWithTooManyDependents
+      enabled: true
+      severity: WARNING
+      options:
+        limit: 7
