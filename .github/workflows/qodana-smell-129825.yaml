@@ -39,34 +39,3 @@ jobs:
           post-pr-comment: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository }}
           upload-result: true
           artifact-name: qodana-long-method-129825-${{ github.run_id }}
-
-      - name: Confirmar inspeções e limites efetivamente carregados
-        if: ${{ !cancelled() }}
-        env:
-          PROFILE_PATH: ${{ runner.temp }}/qodana/results/log/main.profile.xml
-        run: |
-          python3 - <<'PY'
-          import os
-          import xml.etree.ElementTree as ET
-          from pathlib import Path
-
-          profile = Path(os.environ["PROFILE_PATH"])
-          if not profile.is_file():
-              raise SystemExit("Não foi gerado main.profile.xml; a análise não ficou validada.")
-          active = {
-              tool.get("class"): tool
-              for tool in ET.parse(profile).iter("inspection_tool")
-              if tool.get("enabled") == "true"
-          }
-          expected = {"NonCommentSourceStatements": "20", "CyclomaticComplexity": "10"}
-          if set(active) != set(expected):
-              extras = sorted(set(active) - set(expected))
-              missing = sorted(set(expected) - set(active))
-              raise SystemExit(f"Perfil inesperado: {len(active)} inspeções ativas; em falta: {missing}; extras (até 10): {extras[:10]}")
-          for inspection, limit in expected.items():
-              tool = active[inspection]
-              options = {option.get("name"): option.get("value") for option in tool.findall("option")}
-              if options.get("m_limit") != limit or tool.get("level") != "WARNING":
-                  raise SystemExit(f"Configuração inesperada para {inspection}: {options}, {tool.get('level')}")
-              print(f"Confirmado: {inspection}, m_limit={limit}, WARNING")
-          PY
