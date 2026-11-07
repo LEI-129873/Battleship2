@@ -1,0 +1,135 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > CellState</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">battleship</a>
+</div>
+
+<h1>Coverage Summary for Class: CellState (battleship)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CellState</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package battleship;
+&nbsp;
+&nbsp;/**
+&nbsp; * Estado visual de uma célula de um tabuleiro.
+&nbsp; * Cada estado tem um símbolo próprio, para que seja distinguível mesmo sem cor.
+&nbsp; */
+<b class="nc">&nbsp;public enum CellState {</b>
+&nbsp;	/** Água por atingir (ou célula do adversário ainda desconhecida). */
+<b class="nc">&nbsp;	WATER(&#39; &#39;),</b>
+&nbsp;	/** Água atingida: tiro sem efeito. */
+<b class="nc">&nbsp;	MISS(&#39;o&#39;),</b>
+&nbsp;	/** Navio intacto (apenas visível no tabuleiro próprio). */
+<b class="nc">&nbsp;	SHIP(&#39;#&#39;),</b>
+&nbsp;	/** Navio atingido, mas ainda a flutuar. */
+<b class="nc">&nbsp;	HIT(&#39;*&#39;),</b>
+&nbsp;	/** Navio afundado. */
+<b class="nc">&nbsp;	SUNK(&#39;X&#39;);</b>
+&nbsp;
+&nbsp;	private final char symbol;
+&nbsp;
+<b class="nc">&nbsp;	CellState(char symbol) {</b>
+<b class="nc">&nbsp;		this.symbol = symbol;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	/**
+&nbsp;	 * @return o símbolo usado para representar este estado
+&nbsp;	 */
+&nbsp;	public char getSymbol() {
+<b class="nc">&nbsp;		return symbol;</b>
+&nbsp;	}
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-11-07 23:10</div>
+</div>
+</body>
+</html>
