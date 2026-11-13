@@ -49,7 +49,7 @@ class MoveTest {
 
     @Test
     @DisplayName("processEnemyFire handles misses, repeats, and invalid shots")
-    void processEnemyFire_MissesRepeatsInvalid() {
+    void processEnemyFireMissesRepeatsInvalid() {
         List<IPosition> shots = List.of(pos1, pos2, pos3);
 
         // 1 tiro inválido, 1 tiro repetido, 1 tiro na água
@@ -71,7 +71,7 @@ class MoveTest {
 
     @Test
     @DisplayName("processEnemyFire handles hits and sunk ships")
-    void processEnemyFire_HitsAndSunk() {
+    void processEnemyFireHitsAndSunk() {
         IShip barca = new Barge(Compass.NORTH, new Position(5, 5));
         IShip caravela = new Caravel(Compass.NORTH, new Position(7, 7));
 
@@ -95,7 +95,7 @@ class MoveTest {
 
     @Test
     @DisplayName("processEnemyFire with verbose=true prints to console")
-    void processEnemyFire_Verbose() {
+    void processEnemyFireVerbose() {
         List<IPosition> shots = List.of(pos1, pos2, pos3);
         List<IGame.ShotResult> results = List.of(
                 new IGame.ShotResult(true, true, null, false),
@@ -114,7 +114,7 @@ class MoveTest {
 
     @Test
     @DisplayName("processEnemyFire formats string correctly when there are NO misses")
-    void processEnemyFire_NoMisses() {
+    void processEnemyFireNoMisses() {
         IShip barca = new Barge(Compass.NORTH, new Position(5, 5));
         IShip caravela = new Caravel(Compass.NORTH, new Position(7, 7));
 
@@ -137,7 +137,7 @@ class MoveTest {
 
     @Test
     @DisplayName("processEnemyFire handles multiple sunk ships of the same type")
-    void processEnemyFire_MultipleSameType() {
+    void processEnemyFireMultipleSameType() {
         IShip barca1 = new Barge(Compass.NORTH, new Position(1, 1));
         IShip barca2 = new Barge(Compass.NORTH, new Position(2, 2));
 
@@ -160,7 +160,7 @@ class MoveTest {
 
     @Test
     @DisplayName("processEnemyFire with verbose=true covers string building paths")
-    void processEnemyFire_VerboseComplex() {
+    void processEnemyFireVerboseComplex() {
         IShip barca = new Barge(Compass.NORTH, new Position(5, 5));
         IShip caravela = new Caravel(Compass.NORTH, new Position(7, 7));
 
@@ -182,7 +182,7 @@ class MoveTest {
 
     @Test
     @DisplayName("processEnemyFire verbose with only invalid shots")
-    void processEnemyFire_VerboseAllInvalid() {
+    void processEnemyFireVerboseAllInvalid() {
         List<IPosition> shots = List.of(pos1, pos2, pos3);
         List<IGame.ShotResult> results = List.of(
                 new IGame.ShotResult(false, false, null, false),
@@ -198,7 +198,7 @@ class MoveTest {
 
     @Test
     @DisplayName("processEnemyFire verbose with sunk and hits but no misses")
-    void processEnemyFire_VerboseNoMisses() {
+    void processEnemyFireVerboseNoMisses() {
         IShip barca = new Barge(Compass.NORTH, new Position(5, 5));
         IShip caravela = new Caravel(Compass.NORTH, new Position(7, 7));
         IShip nau = new Carrack(Compass.NORTH, new Position(9, 9));
