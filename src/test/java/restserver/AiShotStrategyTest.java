@@ -24,7 +24,7 @@ class AiShotStrategyTest {
 
     @Test
     @DisplayName("Fase HUNT: Deve devolver 3 tiros no padrão de xadrez")
-    void testComputeShots_HuntPhase() {
+    void testComputeShotsHuntPhase() {
         // Sem histórico de jogadas, a IA deve entrar em modo de caça
         List<IPosition> shots = strategy.computeShots(game);
 
@@ -43,7 +43,7 @@ class AiShotStrategyTest {
 
     @Test
     @DisplayName("Fase TARGET: Deve mudar de estratégia ao acertar num navio")
-    void testComputeShots_TargetPhase() {
+    void testComputeShotsTargetPhase() {
         // 1. Simular que a IA acertou num navio em (5,5), mas não o afundou
         IPosition hitPosition = new Position(5, 5);
         IGame.ShotResult hitResult = new IGame.ShotResult(true, false, new Barge(Compass.NORTH, hitPosition), false);
@@ -70,7 +70,7 @@ class AiShotStrategyTest {
 
     @Test
     @DisplayName("Fallback: Deve encontrar tiros válidos mesmo com o tabuleiro quase cheio")
-    void testComputeShots_Fallback() {
+    void testComputeShotsFallback() {
         // Enche o tabuleiro quase todo com tiros antigos (deixa apenas 3 posições livres)
         for (int r = 0; r < Game.BOARD_SIZE; r++) {
             for (int c = 0; c < Game.BOARD_SIZE; c++) {

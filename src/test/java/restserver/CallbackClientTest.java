@@ -29,7 +29,7 @@ class CallbackClientTest {
 
     @Test
     @DisplayName("Deve retornar false se o servidor do jogador estiver offline")
-    void testSendShots_ServerOffline() {
+    void testSendShotsServerOffline() {
         List<IPosition> shots = List.of(new Position(0, 0),
                 new Position(1, 1),
                 new Position(2, 2));
@@ -42,7 +42,7 @@ class CallbackClientTest {
 
     @Test
     @DisplayName("Deve processar a resposta do servidor e atualizar o jogo em caso de sucesso")
-    void testSendShots_Success() throws IOException {
+    void testSendShotsSuccess() throws IOException {
         // 1. Criar um servidor HTTP falso na porta 0 (o SO escolhe uma porta livre)
         HttpServer server = HttpServer.create(new InetSocketAddress(0), 0);
 
