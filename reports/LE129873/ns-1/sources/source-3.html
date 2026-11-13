@@ -1,0 +1,210 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > BoardState</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">battleship</a>
+</div>
+
+<h1>Coverage Summary for Class: BoardState (battleship)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">BoardState</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/48)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/42)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package battleship;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;/**
+&nbsp; * Calcula o estado de cada célula dos tabuleiros (próprio e do adversário),
+&nbsp; * independentemente da forma como são desenhados.
+&nbsp; */
+<b class="nc">&nbsp;public final class BoardState {</b>
+&nbsp;
+&nbsp;	private BoardState() {
+&nbsp;		// Classe utilitária: construtor privado
+&nbsp;	}
+&nbsp;
+&nbsp;	/**
+&nbsp;	 * Constrói o tabuleiro próprio: a minha frota e os tiros que o adversário fez sobre ela.
+&nbsp;	 *
+&nbsp;	 * @param fleet      a minha frota
+&nbsp;	 * @param alienMoves as jogadas do adversário
+&nbsp;	 * @return matriz [linha][coluna] com o estado de cada célula
+&nbsp;	 */
+&nbsp;	public static CellState[][] ownBoard(IFleet fleet, List&lt;IMove&gt; alienMoves) {
+<b class="nc">&nbsp;		assert fleet != null;</b>
+<b class="nc">&nbsp;		assert alienMoves != null;</b>
+&nbsp;
+<b class="nc">&nbsp;		CellState[][] board = emptyBoard();</b>
+&nbsp;
+<b class="nc">&nbsp;		for (IShip ship : fleet.getShips())</b>
+<b class="nc">&nbsp;			for (IPosition pos : ship.getPositions())</b>
+<b class="nc">&nbsp;				set(board, pos, CellState.SHIP);</b>
+&nbsp;
+<b class="nc">&nbsp;		for (IMove move : alienMoves)</b>
+<b class="nc">&nbsp;			for (IPosition shot : move.getShots()) {</b>
+<b class="nc">&nbsp;				if (!shot.isInside())</b>
+&nbsp;					continue;
+<b class="nc">&nbsp;				CellState current = board[shot.getRow()][shot.getColumn()];</b>
+<b class="nc">&nbsp;				if (current == CellState.WATER)</b>
+<b class="nc">&nbsp;					set(board, shot, CellState.MISS);</b>
+<b class="nc">&nbsp;				else if (current == CellState.SHIP)</b>
+<b class="nc">&nbsp;					set(board, shot, CellState.HIT);</b>
+&nbsp;			}
+&nbsp;
+<b class="nc">&nbsp;		for (IShip ship : fleet.getSunkShips())</b>
+<b class="nc">&nbsp;			for (IPosition pos : ship.getPositions())</b>
+<b class="nc">&nbsp;				set(board, pos, CellState.SUNK);</b>
+&nbsp;
+<b class="nc">&nbsp;		return board;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	/**
+&nbsp;	 * Constrói o tabuleiro do adversário a partir dos meus tiros e dos respetivos resultados.
+&nbsp;	 * Os navios do adversário só aparecem quando são atingidos.
+&nbsp;	 *
+&nbsp;	 * @param myMoves as minhas jogadas (com resultados)
+&nbsp;	 * @return matriz [linha][coluna] com o estado de cada célula
+&nbsp;	 */
+&nbsp;	public static CellState[][] opponentBoard(List&lt;IMove&gt; myMoves) {
+<b class="nc">&nbsp;		assert myMoves != null;</b>
+&nbsp;
+<b class="nc">&nbsp;		CellState[][] board = emptyBoard();</b>
+&nbsp;
+<b class="nc">&nbsp;		for (IMove move : myMoves) {</b>
+<b class="nc">&nbsp;			List&lt;IPosition&gt; shots = move.getShots();</b>
+<b class="nc">&nbsp;			List&lt;IGame.ShotResult&gt; results = move.getShotResults();</b>
+<b class="nc">&nbsp;			for (int i = 0; i &lt; shots.size() &amp;&amp; i &lt; results.size(); i++) {</b>
+<b class="nc">&nbsp;				IPosition shot = shots.get(i);</b>
+<b class="nc">&nbsp;				IGame.ShotResult result = results.get(i);</b>
+<b class="nc">&nbsp;				if (!shot.isInside() || !result.valid() || result.repeated())</b>
+&nbsp;					continue;
+&nbsp;
+<b class="nc">&nbsp;				if (result.ship() == null)</b>
+<b class="nc">&nbsp;					set(board, shot, CellState.MISS);</b>
+<b class="nc">&nbsp;				else if (result.sunk())</b>
+<b class="nc">&nbsp;					for (IPosition pos : result.ship().getPositions())</b>
+<b class="nc">&nbsp;						set(board, pos, CellState.SUNK);</b>
+<b class="nc">&nbsp;				else if (board[shot.getRow()][shot.getColumn()] != CellState.SUNK)</b>
+<b class="nc">&nbsp;					set(board, shot, CellState.HIT);</b>
+&nbsp;			}
+&nbsp;		}
+<b class="nc">&nbsp;		return board;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	private static CellState[][] emptyBoard() {
+<b class="nc">&nbsp;		CellState[][] board = new CellState[Game.BOARD_SIZE][Game.BOARD_SIZE];</b>
+<b class="nc">&nbsp;		for (CellState[] row : board)</b>
+<b class="nc">&nbsp;			java.util.Arrays.fill(row, CellState.WATER);</b>
+<b class="nc">&nbsp;		return board;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	private static void set(CellState[][] board, IPosition pos, CellState state) {
+<b class="nc">&nbsp;		if (pos.isInside())</b>
+<b class="nc">&nbsp;			board[pos.getRow()][pos.getColumn()] = state;</b>
+&nbsp;	}
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-11-07 23:10</div>
+</div>
+</body>
+</html>
