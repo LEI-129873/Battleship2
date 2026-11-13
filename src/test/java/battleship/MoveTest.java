@@ -72,7 +72,7 @@ class MoveTest {
     @Test
     @DisplayName("processEnemyFire handles hits and sunk ships")
     void processEnemyFireHitsAndSunk() {
-        IShip barca = new Barge(Compass.NORTH, new Position(5, 5));
+        IShip barca = new SingleCellShip(Compass.NORTH, new Position(5, 5));
         IShip caravela = new Caravel(Compass.NORTH, new Position(7, 7));
 
         List<IPosition> shots = List.of(pos1, pos2, pos3);
@@ -115,7 +115,7 @@ class MoveTest {
     @Test
     @DisplayName("processEnemyFire formats string correctly when there are NO misses")
     void processEnemyFireNoMisses() {
-        IShip barca = new Barge(Compass.NORTH, new Position(5, 5));
+        IShip barca = new SingleCellShip(Compass.NORTH, new Position(5, 5));
         IShip caravela = new Caravel(Compass.NORTH, new Position(7, 7));
 
         List<IPosition> shots = List.of(pos1, pos2, pos3);
@@ -138,8 +138,8 @@ class MoveTest {
     @Test
     @DisplayName("processEnemyFire handles multiple sunk ships of the same type")
     void processEnemyFireMultipleSameType() {
-        IShip barca1 = new Barge(Compass.NORTH, new Position(1, 1));
-        IShip barca2 = new Barge(Compass.NORTH, new Position(2, 2));
+        IShip barca1 = new SingleCellShip(Compass.NORTH, new Position(1, 1));
+        IShip barca2 = new SingleCellShip(Compass.NORTH, new Position(2, 2));
 
         List<IPosition> shots = List.of(pos1, pos2, pos3);
 
@@ -161,7 +161,7 @@ class MoveTest {
     @Test
     @DisplayName("processEnemyFire with verbose=true covers string building paths")
     void processEnemyFireVerboseComplex() {
-        IShip barca = new Barge(Compass.NORTH, new Position(5, 5));
+        IShip barca = new SingleCellShip(Compass.NORTH, new Position(5, 5));
         IShip caravela = new Caravel(Compass.NORTH, new Position(7, 7));
 
         List<IPosition> shots = List.of(pos1, pos2, pos3);
@@ -199,7 +199,7 @@ class MoveTest {
     @Test
     @DisplayName("processEnemyFire verbose with sunk and hits but no misses")
     void processEnemyFireVerboseNoMisses() {
-        IShip barca = new Barge(Compass.NORTH, new Position(5, 5));
+        IShip barca = new SingleCellShip(Compass.NORTH, new Position(5, 5));
         IShip caravela = new Caravel(Compass.NORTH, new Position(7, 7));
         IShip nau = new Carrack(Compass.NORTH, new Position(9, 9));
 

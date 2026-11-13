@@ -16,7 +16,7 @@ class IGameTest {
     @BeforeEach
     void setUp() {
         // Criamos um navio só para preencher o campo IShip do record
-        dummyShip = new Barge(Compass.NORTH, new Position(0, 0));
+        dummyShip = new SingleCellShip(Compass.NORTH, new Position(0, 0));
     }
 
     @AfterEach
