@@ -1,0 +1,384 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Tasks</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">battleship</a>
+</div>
+
+<h1>Coverage Summary for Class: Tasks (battleship)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Tasks</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    77,8%
+  </span>
+  <span class="absValue">
+    (7/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    30,1%
+  </span>
+  <span class="absValue">
+    (22/73)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    44,2%
+  </span>
+  <span class="absValue">
+    (53/120)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package battleship;
+&nbsp;
+&nbsp;import java.io.IOException;
+&nbsp;import java.util.Scanner;
+&nbsp;
+&nbsp;import org.apache.logging.log4j.LogManager;
+&nbsp;import org.apache.logging.log4j.Logger;
+&nbsp;import org.jetbrains.annotations.NotNull;
+&nbsp;import org.apache.commons.lang3.time.StopWatch;
+&nbsp;
+&nbsp;/**
+&nbsp; * The type Tasks.
+&nbsp; */
+<b class="fc">&nbsp;public class Tasks {</b>
+&nbsp;	/**
+&nbsp;	 * The constant LOGGER.
+&nbsp;	 */
+<b class="fc">&nbsp;	private static final Logger LOGGER = LogManager.getLogger();</b>
+&nbsp;
+&nbsp;	/**
+&nbsp;	 * Comandos em Português
+&nbsp;	 */
+&nbsp;	private static final String AJUDA = &quot;ajuda&quot;;
+&nbsp;	private static final String GERAFROTA = &quot;gerafrota&quot;;
+&nbsp;	private static final String LEFROTA = &quot;lefrota&quot;;
+&nbsp;	private static final String DESISTIR = &quot;desisto&quot;;
+&nbsp;	private static final String RAJADA = &quot;rajada&quot;;
+&nbsp;	private static final String TIROS = &quot;tiros&quot;;
+&nbsp;	private static final String MAPA = &quot;mapa&quot;;
+&nbsp;	private static final String STATUS = &quot;estado&quot;;
+&nbsp;	private static final String SIMULA = &quot;simula&quot;;
+&nbsp;	private static final String PDF = &quot;pdf&quot;;
+&nbsp;	private static final String IDIOMA = &quot;idioma&quot;;
+&nbsp;	private static final String TABULEIROS = &quot;tabuleiros&quot;;
+&nbsp;
+&nbsp;	/**
+&nbsp;	 * Comandos em Inglês (aliases)
+&nbsp;	 */
+&nbsp;	private static final String HELP = &quot;help&quot;;
+&nbsp;	private static final String GENFLEET = &quot;genfleet&quot;;
+&nbsp;	private static final String LOADFLEET = &quot;loadfleet&quot;;
+&nbsp;	private static final String QUIT = &quot;quit&quot;;
+&nbsp;	private static final String EXIT = &quot;exit&quot;;
+&nbsp;	private static final String FIRE = &quot;fire&quot;;
+&nbsp;	private static final String SHOTS = &quot;shots&quot;;
+&nbsp;	private static final String MAP = &quot;map&quot;;
+&nbsp;	private static final String STATUS_EN = &quot;status&quot;;
+&nbsp;	private static final String SIMULATE = &quot;simulate&quot;;
+&nbsp;	private static final String LANG = &quot;lang&quot;;
+&nbsp;	private static final String BOARDS = &quot;boards&quot;;
+&nbsp;
+&nbsp;	/**
+&nbsp;	 * This task also tests the fighting element of a round of three shots
+&nbsp;	 */
+&nbsp;	public static void menu() {
+&nbsp;
+<b class="nc">&nbsp;		IFleet myFleet = null;</b>
+<b class="nc">&nbsp;		IGame game = null;</b>
+<b class="nc">&nbsp;		menuHelp();</b>
+&nbsp;
+<b class="nc">&nbsp;		Scanner in = new Scanner(System.in);</b>
+&nbsp;
+&nbsp;		while (true) {
+<b class="nc">&nbsp;			System.out.print(&quot;&gt; &quot;);</b>
+<b class="nc">&nbsp;			StopWatch watch = StopWatch.createStarted(); // começa a contar assim que o prompt aparece</b>
+<b class="nc">&nbsp;			String command = in.next();</b>
+&nbsp;
+<b class="nc">&nbsp;			if (command.equals(DESISTIR) || command.equalsIgnoreCase(QUIT) || command.equalsIgnoreCase(EXIT))</b>
+&nbsp;				break;
+&nbsp;
+<b class="nc">&nbsp;			switch (command.toLowerCase()) {</b>
+&nbsp;				case GERAFROTA:
+&nbsp;				case GENFLEET:
+<b class="nc">&nbsp;					myFleet = Fleet.createRandom();</b>
+<b class="nc">&nbsp;					game = new Game(myFleet);</b>
+<b class="nc">&nbsp;					game.printMyBoard(false, true);</b>
+<b class="nc">&nbsp;					GameWindow.show(game);</b>
+&nbsp;					break;
+&nbsp;				case LEFROTA:
+&nbsp;				case LOADFLEET:
+<b class="nc">&nbsp;					myFleet = buildFleet(in);</b>
+<b class="nc">&nbsp;					game = new Game(myFleet);</b>
+<b class="nc">&nbsp;					game.printMyBoard(false, true);</b>
+<b class="nc">&nbsp;					GameWindow.show(game);</b>
+&nbsp;					break;
+&nbsp;				case STATUS:
+&nbsp;				case STATUS_EN:
+<b class="nc">&nbsp;					if (myFleet != null)</b>
+<b class="nc">&nbsp;						myFleet.printStatus();</b>
+&nbsp;					break;
+&nbsp;				case MAPA:
+&nbsp;				case MAP:
+<b class="nc">&nbsp;					if (myFleet != null)</b>
+<b class="nc">&nbsp;						game.printMyBoard(false, true);</b>
+&nbsp;					break;
+&nbsp;				case RAJADA:
+&nbsp;				case FIRE:
+<b class="nc">&nbsp;					if (game != null) {</b>
+<b class="nc">&nbsp;						game.readEnemyFire(in);</b>
+<b class="nc">&nbsp;						myFleet.printStatus();</b>
+<b class="nc">&nbsp;						game.printMyBoard(true, false);</b>
+<b class="nc">&nbsp;						GameWindow.show(game);</b>
+&nbsp;
+<b class="nc">&nbsp;						if (game.getRemainingShips() == 0) {</b>
+<b class="nc">&nbsp;							printElapsed(watch);</b>
+<b class="nc">&nbsp;							game.over();</b>
+<b class="nc">&nbsp;							System.exit(0);</b>
+&nbsp;						}
+&nbsp;					}
+&nbsp;					break;
+&nbsp;				case SIMULA:
+&nbsp;				case SIMULATE:
+<b class="nc">&nbsp;					if (game != null) {</b>
+<b class="nc">&nbsp;						while (game.getRemainingShips() &gt; 0) {</b>
+<b class="nc">&nbsp;							game.randomEnemyFire();</b>
+<b class="nc">&nbsp;							myFleet.printStatus();</b>
+<b class="nc">&nbsp;							game.printMyBoard(true, false);</b>
+<b class="nc">&nbsp;							GameWindow.show(game);</b>
+&nbsp;							try {
+<b class="nc">&nbsp;								Thread.sleep(3000);</b>
+&nbsp;							} catch (InterruptedException e) {
+<b class="nc">&nbsp;								Thread.currentThread().interrupt();</b>
+&nbsp;							}
+&nbsp;						}
+<b class="nc">&nbsp;						printElapsed(watch);</b>
+<b class="nc">&nbsp;						game.over();</b>
+<b class="nc">&nbsp;						System.exit(0);</b>
+&nbsp;					}
+&nbsp;					break;
+&nbsp;				case TIROS:
+&nbsp;				case SHOTS:
+<b class="nc">&nbsp;					if (game != null)</b>
+<b class="nc">&nbsp;						game.printMyBoard(true, true);</b>
+&nbsp;					break;
+&nbsp;				case PDF:
+<b class="nc">&nbsp;					if (game != null) {</b>
+&nbsp;						try {
+<b class="nc">&nbsp;							GamePDFExporter.generatePDF(game.getMyMoves(), game.getAlienMoves());</b>
+<b class="nc">&nbsp;							System.out.println(&quot;Histórico exportado para historico-partida.pdf&quot;);</b>
+&nbsp;						} catch (IOException e) {
+<b class="nc">&nbsp;							System.err.println(&quot;Não foi possível gerar o PDF: &quot; + e.getMessage());</b>
+&nbsp;						}
+&nbsp;					}
+&nbsp;					break;
+&nbsp;				case TABULEIROS:
+&nbsp;				case BOARDS:
+<b class="nc">&nbsp;					if (game != null)</b>
+<b class="nc">&nbsp;						GameWindow.show(game);</b>
+&nbsp;					else
+<b class="nc">&nbsp;						System.out.println(I18n.get(&quot;game.not.started&quot;));</b>
+&nbsp;					break;
+&nbsp;				case AJUDA:
+&nbsp;				case HELP:
+<b class="nc">&nbsp;					menuHelp();</b>
+&nbsp;					break;
+&nbsp;				case IDIOMA:
+&nbsp;				case LANG:
+<b class="nc">&nbsp;					if (in.hasNext()) {</b>
+<b class="nc">&nbsp;						String novoIdioma = in.next();</b>
+<b class="nc">&nbsp;						I18n.setLanguage(novoIdioma);</b>
+<b class="nc">&nbsp;						System.out.println(I18n.get(&quot;game.language.changed&quot;));</b>
+<b class="nc">&nbsp;						GameWindow.show(game);</b>
+&nbsp;					} else {
+<b class="nc">&nbsp;						System.out.println(I18n.get(&quot;game.language.usage&quot;));</b>
+&nbsp;					}
+&nbsp;					break;
+&nbsp;				default:
+<b class="nc">&nbsp;					System.out.println(I18n.get(&quot;game.unknown.command&quot;, command));</b>
+&nbsp;			}
+<b class="nc">&nbsp;			printElapsed(watch);</b>
+&nbsp;		}
+<b class="nc">&nbsp;		GameWindow.close();</b>
+<b class="nc">&nbsp;		System.out.println(I18n.get(&quot;game.goodbye&quot;));</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	private static void printElapsed(StopWatch watch) {
+<b class="nc">&nbsp;		watch.stop();</b>
+<b class="nc">&nbsp;		double seconds = watch.getTime() / 1000.0;</b>
+<b class="nc">&nbsp;		System.out.printf(&quot;Tempo de execução: %.2f segundos%n&quot;, seconds);</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	/**
+&nbsp;	 * This function provides help information about the menu commands.
+&nbsp;	 */
+&nbsp;	public static void menuHelp() {
+<b class="fc">&nbsp;		System.out.println(I18n.get(&quot;help.title&quot;));</b>
+<b class="fc">&nbsp;		System.out.println(I18n.get(&quot;help.subtitle&quot;));</b>
+<b class="fc">&nbsp;		System.out.println(I18n.get(&quot;help.gerafrota&quot;));</b>
+<b class="fc">&nbsp;		System.out.println(I18n.get(&quot;help.lefrota&quot;));</b>
+<b class="fc">&nbsp;		System.out.println(I18n.get(&quot;help.status&quot;));</b>
+<b class="fc">&nbsp;		System.out.println(I18n.get(&quot;help.mapa&quot;));</b>
+<b class="fc">&nbsp;		System.out.println(I18n.get(&quot;help.rajada&quot;));</b>
+<b class="fc">&nbsp;		System.out.println(I18n.get(&quot;help.simula&quot;));</b>
+<b class="fc">&nbsp;		System.out.println(I18n.get(&quot;help.tiros&quot;));</b>
+<b class="fc">&nbsp;		System.out.println(I18n.get(&quot;help.tabuleiros&quot;));</b>
+<b class="fc">&nbsp;		System.out.println(I18n.get(&quot;help.lang&quot;));</b>
+<b class="fc">&nbsp;		System.out.println(I18n.get(&quot;help.pdf&quot;));</b>
+<b class="fc">&nbsp;		System.out.println(I18n.get(&quot;help.desistir&quot;));</b>
+<b class="fc">&nbsp;		System.out.println(I18n.get(&quot;help.footer&quot;));</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public static Fleet buildFleet(Scanner in) {
+<b class="pc">&nbsp;		assert in != null;</b>
+&nbsp;
+<b class="fc">&nbsp;		Fleet fleet = new Fleet();</b>
+<b class="fc">&nbsp;		int i = 0;</b>
+<b class="fc">&nbsp;		while (i &lt; Fleet.FLEET_SIZE) {</b>
+<b class="fc">&nbsp;			IShip s = readShip(in);</b>
+<b class="fc">&nbsp;			if (s != null) {</b>
+<b class="fc">&nbsp;				boolean success = fleet.addShip(s);</b>
+<b class="fc">&nbsp;				if (success)</b>
+<b class="fc">&nbsp;					i++;</b>
+&nbsp;				else
+<b class="fc">&nbsp;					LOGGER.info(&quot;Falha na criacao de {} {} {}&quot;, s.getCategory(), s.getBearing(), s.getPosition());</b>
+&nbsp;			} else {
+<b class="fc">&nbsp;				LOGGER.info(&quot;Navio desconhecido!&quot;);</b>
+&nbsp;			}
+&nbsp;		}
+<b class="fc">&nbsp;		LOGGER.info(&quot;{} navios adicionados com sucesso!&quot;, i);</b>
+<b class="fc">&nbsp;		return fleet;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public static Ship readShip(Scanner in) {
+<b class="pc">&nbsp;		assert in != null;</b>
+&nbsp;
+<b class="fc">&nbsp;		String shipKind = in.next();</b>
+<b class="fc">&nbsp;		Position pos = readPosition(in);</b>
+<b class="fc">&nbsp;		char c = in.next().charAt(0);</b>
+<b class="fc">&nbsp;		Compass bearing = Compass.charToCompass(c);</b>
+<b class="fc">&nbsp;		return Ship.buildShip(shipKind, bearing, pos);</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public static Position readPosition(Scanner in) {
+<b class="pc">&nbsp;		assert in != null;</b>
+&nbsp;
+<b class="fc">&nbsp;		int row = in.nextInt();</b>
+<b class="fc">&nbsp;		int column = in.nextInt();</b>
+<b class="fc">&nbsp;		return new Position(row, column);</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	public static IPosition readClassicPosition(@NotNull Scanner in) {
+<b class="fc">&nbsp;		if (!in.hasNext()) {</b>
+<b class="fc">&nbsp;			throw new IllegalArgumentException(&quot;Nenhuma posição válida encontrada!&quot;);</b>
+&nbsp;		}
+&nbsp;
+<b class="fc">&nbsp;		String part1 = in.next();</b>
+<b class="fc">&nbsp;		String part2 = null;</b>
+&nbsp;
+<b class="fc">&nbsp;		if (in.hasNextInt()) {</b>
+<b class="fc">&nbsp;			part2 = in.next();</b>
+&nbsp;		}
+&nbsp;
+<b class="fc">&nbsp;		String input = (part2 != null) ? part1 + part2 : part1;</b>
+<b class="fc">&nbsp;		input = input.toUpperCase();</b>
+&nbsp;
+<b class="fc">&nbsp;		if (input.matches(&quot;[A-Z]\\d+&quot;)) {</b>
+<b class="fc">&nbsp;			char column = input.charAt(0);</b>
+<b class="fc">&nbsp;			int row = Integer.parseInt(input.substring(1));</b>
+<b class="fc">&nbsp;			return new Position(column, row);</b>
+<b class="pc">&nbsp;		} else if (part2 != null &amp;&amp; part1.matches(&quot;[A-Z]&quot;) &amp;&amp; part2.matches(&quot;\\d+&quot;)) {</b>
+<b class="nc">&nbsp;			char column = part1.charAt(0);</b>
+<b class="nc">&nbsp;			int row = Integer.parseInt(part2);</b>
+<b class="nc">&nbsp;			return new Position(column, row);</b>
+&nbsp;		} else {
+<b class="fc">&nbsp;			throw new IllegalArgumentException(&quot;Formato inválido. Use &#39;A3&#39;, &#39;A 3&#39; ou similar.&quot;);</b>
+&nbsp;		}
+&nbsp;	}
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-11-13 15:16</div>
+</div>
+</body>
+</html>
