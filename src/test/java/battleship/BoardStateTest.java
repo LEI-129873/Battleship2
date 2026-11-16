@@ -10,12 +10,12 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class BoardStateTest {
 
-	private Fleet fleet;
+	private IFleet fleet;
 	private Game game;
 
 	@BeforeEach
 	void setUp() {
-		fleet = new Fleet();
+		fleet = TestFixtures.emptyFleet();
 		fleet.addShip(new Caravel(Compass.EAST, new Position(0, 0)));  // A1, A2
 		fleet.addShip(new Barge(Compass.NORTH, new Position(5, 5)));   // F6
 		game = new Game(fleet);
@@ -23,7 +23,7 @@ public class BoardStateTest {
 
 	@Test
 	void emptyBoardsAreWater() {
-		CellState[][] own = BoardState.ownBoard(new Fleet(), List.of());
+		CellState[][] own = BoardState.ownBoard(TestFixtures.emptyFleet(), List.of());
 		CellState[][] opponent = BoardState.opponentBoard(List.of());
 		assertEquals(Game.BOARD_SIZE, own.length);
 		assertEquals(Game.BOARD_SIZE, opponent[0].length);

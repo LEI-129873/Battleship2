@@ -17,7 +17,7 @@ class GamePDFExporterTest {
     @TempDir
     Path tempDir;
 
-    private IMove moveWith(int number, char row, int col, IGame.ShotResult result) {
+    private Move moveWith(int number, char row, int col, IGame.ShotResult result) {
         List<IPosition> shots = new ArrayList<>();
         shots.add(new Position(row, col));
         List<IGame.ShotResult> results = new ArrayList<>();
@@ -37,19 +37,19 @@ class GamePDFExporterTest {
     @Test
     @DisplayName("Gera PDF com todos os tipos de resultado")
     void generatePdfWithAllResultTypes() throws IOException {
-        IShip barge = new Barge(Compass.NORTH, new Position(0, 0));
+        IShip barge = new SingleCellShip(Compass.NORTH, new Position(0, 0));
 
-        List<IMove> mine = new ArrayList<>();
+        List<Move> mine = new ArrayList<>();
         mine.add(moveWith(1, 'A', 1, new IGame.ShotResult(false, false, null, false)));   // INVALID
         mine.add(moveWith(2, 'B', 2, new IGame.ShotResult(true, true, null, false)));     // REPEATED
         mine.add(moveWith(3, 'C', 3, new IGame.ShotResult(true, false, null, false)));    // MISS
         mine.add(moveWith(4, 'D', 4, new IGame.ShotResult(true, false, barge, false)));   // HIT
 
-        List<IMove> alien = new ArrayList<>();
+        List<Move> alien = new ArrayList<>();
         alien.add(moveWith(1, 'E', 5, new IGame.ShotResult(true, false, barge, true)));   // SUNK
 
         Path pdf = tempDir.resolve("completo.pdf");
-        GamePDFExporter.generatePDF(mine, alien, pdf);
+        GamePDFExporter.generatePDF(new ArrayList<>(mine), new ArrayList<>(alien), pdf);
         assertTrue(Files.size(pdf) > 0);
     }
 
@@ -59,24 +59,24 @@ class GamePDFExporterTest {
         List<IPosition> shots = new ArrayList<>();
         shots.add(new Position('A', 1));
 
-        List<IMove> mine = new ArrayList<>();
+        List<Move> mine = new ArrayList<>();
         mine.add(new Move(1, shots, new ArrayList<>()));
 
         Path pdf = tempDir.resolve("semresultados.pdf");
-        assertDoesNotThrow(() -> GamePDFExporter.generatePDF(mine, new ArrayList<>(), pdf));
+        assertDoesNotThrow(() -> GamePDFExporter.generatePDF(new ArrayList<>(mine), new ArrayList<>(), pdf));
         assertTrue(Files.exists(pdf));
     }
 
     @Test
     @DisplayName("Muitas jogadas geram várias páginas sem falhar")
     void generatePdfWithManyMovesCreatesMultiplePages() throws IOException {
-        List<IMove> mine = new ArrayList<>();
+        List<Move> mine = new ArrayList<>();
         for (int i = 1; i <= 60; i++) {
             mine.add(moveWith(i, 'A', 1, new IGame.ShotResult(true, false, null, false)));
         }
 
         Path pdf = tempDir.resolve("paginas.pdf");
-        GamePDFExporter.generatePDF(mine, new ArrayList<>(), pdf);
+        GamePDFExporter.generatePDF(new ArrayList<>(mine), new ArrayList<>(), pdf);
         assertTrue(Files.size(pdf) > 0);
     }
 

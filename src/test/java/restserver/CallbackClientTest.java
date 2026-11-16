@@ -81,7 +81,7 @@ class CallbackClientTest {
         // Verificar se o recordAiMove guardou a jogada no jogo da sessão
         IGame game = session.getGame();
         assertEquals(1, game.getAlienMoves().size(), "A jogada da IA deve ser registada no jogo");
-        assertEquals(3, game.getAlienMoves().get(0).getShots().size(), "Devem estar registados 3 tiros");
+        assertTrue(String.valueOf(game.getAlienMoves().get(0)).contains("shots=3"), "Devem estar registados 3 tiros");
 
         // Como o JSON dizia GAME_OVER, a sessão deve ter terminado com vitória da IA
         assertTrue(session.isGameOver(), "O jogo deve estar terminado após o GAME_OVER");
