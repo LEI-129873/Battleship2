@@ -1,0 +1,224 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > GamePDFExporter</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">battleship</a>
+</div>
+
+<h1>Coverage Summary for Class: GamePDFExporter (battleship)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">GamePDFExporter</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (20/20)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (49/49)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package battleship;
+&nbsp;
+&nbsp;import org.apache.pdfbox.pdmodel.PDDocument;
+&nbsp;import org.apache.pdfbox.pdmodel.PDPage;
+&nbsp;import org.apache.pdfbox.pdmodel.PDPageContentStream;
+&nbsp;import org.apache.pdfbox.pdmodel.common.PDRectangle;
+&nbsp;import org.apache.pdfbox.pdmodel.font.PDType1Font;
+&nbsp;import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
+&nbsp;
+&nbsp;import java.io.IOException;
+&nbsp;import java.nio.file.Path;
+&nbsp;import java.text.Normalizer;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Objects;
+&nbsp;
+&nbsp;public final class GamePDFExporter {
+&nbsp;    private static final float MARGIN = 50;
+&nbsp;    private static final float LINE_HEIGHT = 16;
+&nbsp;
+&nbsp;    private GamePDFExporter() {}
+&nbsp;
+&nbsp;    public static void generatePDF(List&lt;IMove&gt; myPlays, List&lt;IMove&gt; alienMoves) throws IOException {
+<b class="fc">&nbsp;        generatePDF(myPlays, alienMoves, Path.of(&quot;historico-partida.pdf&quot;));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static void generatePDF(List&lt;IMove&gt; myPlays, List&lt;IMove&gt; alienMoves, Path destination)
+&nbsp;            throws IOException {
+<b class="fc">&nbsp;        Objects.requireNonNull(myPlays, &quot;myPlays cannot be null&quot;);</b>
+<b class="fc">&nbsp;        Objects.requireNonNull(alienMoves, &quot;alienMoves cannot be null&quot;);</b>
+<b class="fc">&nbsp;        Objects.requireNonNull(destination, &quot;destination cannot be null&quot;);</b>
+&nbsp;
+<b class="fc">&nbsp;        List&lt;String&gt; lines = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        lines.add(&quot;BATTLESHIP - GAME HISTORY&quot;);</b>
+<b class="fc">&nbsp;        lines.add(&quot;&quot;);</b>
+<b class="fc">&nbsp;        appendMoves(lines, &quot;PLAYER MOVES&quot;, myPlays);</b>
+<b class="fc">&nbsp;        lines.add(&quot;&quot;);</b>
+<b class="fc">&nbsp;        appendMoves(lines, &quot;OPPONENT MOVES&quot;, alienMoves);</b>
+&nbsp;
+<b class="fc">&nbsp;        try (PDDocument document = new PDDocument()) {</b>
+<b class="fc">&nbsp;            PDType1Font font = new PDType1Font(Standard14Fonts.FontName.HELVETICA);</b>
+<b class="fc">&nbsp;            int linesPerPage = (int) ((PDRectangle.A4.getHeight() - 2 * MARGIN) / LINE_HEIGHT);</b>
+&nbsp;
+<b class="fc">&nbsp;            for (int start = 0; start &lt; lines.size(); start += linesPerPage) {</b>
+<b class="fc">&nbsp;                PDPage page = new PDPage(PDRectangle.A4);</b>
+<b class="fc">&nbsp;                document.addPage(page);</b>
+&nbsp;
+<b class="fc">&nbsp;                try (PDPageContentStream content = new PDPageContentStream(document, page)) {</b>
+<b class="fc">&nbsp;                    content.beginText();</b>
+<b class="fc">&nbsp;                    content.setFont(font, 11);</b>
+<b class="fc">&nbsp;                    content.newLineAtOffset(MARGIN, page.getMediaBox().getHeight() - MARGIN);</b>
+&nbsp;
+<b class="fc">&nbsp;                    int end = Math.min(start + linesPerPage, lines.size());</b>
+<b class="fc">&nbsp;                    for (int i = start; i &lt; end; i++) {</b>
+<b class="fc">&nbsp;                        content.showText(toPdfText(lines.get(i)));</b>
+<b class="fc">&nbsp;                        content.newLineAtOffset(0, -LINE_HEIGHT);</b>
+&nbsp;                    }
+<b class="fc">&nbsp;                    content.endText();</b>
+&nbsp;                }
+&nbsp;            }
+&nbsp;
+<b class="fc">&nbsp;            document.save(destination.toFile());</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    // List com todas as informações que estão no PDF
+&nbsp;    private static void appendMoves(List&lt;String&gt; lines, String heading, List&lt;IMove&gt; moves) {
+<b class="fc">&nbsp;        lines.add(heading);</b>
+<b class="fc">&nbsp;        if (moves.isEmpty()) {</b>
+<b class="fc">&nbsp;            lines.add(&quot;No moves recorded.&quot;);</b>
+&nbsp;            return;
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        for (IMove move : moves) {</b>
+<b class="fc">&nbsp;            lines.add(&quot;Move &quot; + move.getNumber() + &quot;:&quot;);</b>
+<b class="fc">&nbsp;            List&lt;IPosition&gt; shots = move.getShots();</b>
+<b class="fc">&nbsp;            List&lt;IGame.ShotResult&gt; results = move.getShotResults();</b>
+&nbsp;
+<b class="fc">&nbsp;            for (int i = 0; i &lt; shots.size(); i++) {</b>
+<b class="fc">&nbsp;                IPosition shot = shots.get(i);</b>
+<b class="fc">&nbsp;                String position = shot.getClassicRow() + String.valueOf(shot.getClassicColumn());</b>
+<b class="fc">&nbsp;                String result = i &lt; results.size() ? describeResult(results.get(i)) : &quot;RESULT UNAVAILABLE&quot;;</b>
+<b class="fc">&nbsp;                lines.add(&quot;  &quot; + position + &quot; - &quot; + result);</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    // Categorizar o tipo de jogada
+&nbsp;    private static String describeResult(IGame.ShotResult result) {
+<b class="fc">&nbsp;        if (!result.valid()) {</b>
+<b class="fc">&nbsp;            return &quot;INVALID&quot;;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (result.repeated()) {</b>
+<b class="fc">&nbsp;            return &quot;REPEATED&quot;;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if (result.ship() == null) {</b>
+<b class="fc">&nbsp;            return &quot;MISS&quot;;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        String ship = &quot; (&quot; + result.ship().getCategory() + &quot;)&quot;;</b>
+<b class="fc">&nbsp;        return result.sunk() ? &quot;SUNK&quot; + ship : &quot;HIT&quot; + ship;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private static String toPdfText(String text) {
+<b class="fc">&nbsp;        String normalized = Normalizer.normalize(text, Normalizer.Form.NFD)</b>
+<b class="fc">&nbsp;                .replaceAll(&quot;\\p{M}&quot;, &quot;&quot;);</b>
+<b class="fc">&nbsp;        return normalized.replaceAll(&quot;[^\\x20-\\x7E]&quot;, &quot;?&quot;);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-11-13 15:16</div>
+</div>
+</body>
+</html>
