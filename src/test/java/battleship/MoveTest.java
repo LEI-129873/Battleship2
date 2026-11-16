@@ -3,6 +3,9 @@ package battleship;
 import org.junit.jupiter.api.*;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Test class for Move.
@@ -214,5 +217,119 @@ class MoveTest {
         String json = move.processEnemyFire(true);
 
         assertTrue(json.contains("\"missedShots\" : 0"));
+    }
+
+    private String captureVerboseOutput(Move m) {
+        PrintStream original = System.out;
+        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(buffer, true, StandardCharsets.UTF_8));
+        try {
+            m.processEnemyFire(true);
+        } finally {
+            System.setOut(original);
+        }
+        return buffer.toString(StandardCharsets.UTF_8);
+    }
+
+    @Test
+    @DisplayName("Verbose: single repeated shot without valid shots uses singular forms")
+    void verboseSingleRepeatedShot() {
+        move = new Move(1, List.of(pos1, pos2, pos3), List.of(
+                new IGame.ShotResult(true, true, null, false),
+                new IGame.ShotResult(false, false, null, false),
+                new IGame.ShotResult(false, false, null, false)
+        ));
+
+        String out = captureVerboseOutput(move);
+
+        assertTrue(out.contains("1 tiro repetido"), "Should use singular for repeated shot");
+        assertTrue(out.contains("2 tiros exteriores"), "Should use plural for outside shots");
+    }
+
+    @Test
+    @DisplayName("Verbose: single miss uses singular and several misses use plural")
+    void verboseMissesSingularAndPlural() {
+        move = new Move(1, List.of(pos1), List.of(
+                new IGame.ShotResult(true, false, null, false)
+        ));
+        assertTrue(captureVerboseOutput(move).contains("1 tiro na "), "Singular miss");
+
+        move = new Move(2, List.of(pos1, pos2), List.of(
+                new IGame.ShotResult(true, false, null, false),
+                new IGame.ShotResult(true, false, null, false)
+        ));
+        assertTrue(captureVerboseOutput(move).contains("2 tiros na "), "Plural misses");
+    }
+
+    @Test
+    @DisplayName("Verbose: single hit on a ship that did not sink uses singular")
+    void verboseSingleHitNoMisses() {
+        IShip barca = new SingleCellShip(Compass.NORTH, new Position(5, 5));
+        move = new Move(1, List.of(pos1), List.of(
+                new IGame.ShotResult(true, false, barca, false)
+        ));
+
+        String out = captureVerboseOutput(move);
+
+        assertTrue(out.contains("1 tiro num(a) Barca"), "Should use singular for one hit");
+        assertFalse(out.contains("+"), "Trailing '+' should have been removed");
+    }
+
+    @Test
+    @DisplayName("Verbose: several hits on a ship that did not sink use plural")
+    void verboseMultipleHitsSameShip() {
+        IShip caravela = new Caravel(Compass.NORTH, new Position(7, 7));
+        move = new Move(1, List.of(pos1, pos2), List.of(
+                new IGame.ShotResult(true, false, caravela, false),
+                new IGame.ShotResult(true, false, caravela, false)
+        ));
+
+        String out = captureVerboseOutput(move);
+
+        assertTrue(out.contains("2 tiros num(a) Caravela"), "Should use plural for several hits");
+    }
+
+    @Test
+    @DisplayName("Verbose: single sunk ship uses singular")
+    void verboseSingleSunkShip() {
+        IShip barca = new SingleCellShip(Compass.NORTH, new Position(5, 5));
+        move = new Move(1, List.of(pos1), List.of(
+                new IGame.ShotResult(true, false, barca, true)
+        ));
+
+        String out = captureVerboseOutput(move);
+
+        assertTrue(out.contains("1 Barca ao fundo"), "Should use singular for one sunk ship");
+        assertFalse(out.contains("Barcas"), "Should not use plural");
+    }
+
+    @Test
+    @DisplayName("Verbose: several sunk ships of the same type use plural")
+    void verboseMultipleSunkSameType() {
+        IShip barca1 = new SingleCellShip(Compass.NORTH, new Position(1, 1));
+        IShip barca2 = new SingleCellShip(Compass.NORTH, new Position(3, 3));
+        move = new Move(1, List.of(pos1, pos2, pos3), List.of(
+                new IGame.ShotResult(true, false, barca1, true),
+                new IGame.ShotResult(true, false, barca2, true),
+                new IGame.ShotResult(true, false, null, false)
+        ));
+
+        String out = captureVerboseOutput(move);
+
+        assertTrue(out.contains("2 Barcas ao fundo"), "Should use plural for two sunk ships");
+    }
+
+    @Test
+    @DisplayName("Verbose: valid shot plus several repeated shots uses plural for repeated")
+    void verboseValidAndMultipleRepeated() {
+        move = new Move(1, List.of(pos1, pos2, pos3), List.of(
+                new IGame.ShotResult(true, false, null, false),
+                new IGame.ShotResult(true, true, null, false),
+                new IGame.ShotResult(true, true, null, false)
+        ));
+
+        String out = captureVerboseOutput(move);
+
+        assertTrue(out.contains("2 tiros repetidos"), "Should use plural for repeated shots");
     }
 }
