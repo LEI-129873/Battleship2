@@ -31,7 +31,7 @@ public class GameTest {
 
 	@BeforeEach
 	void setUp() {
-		game = new Game(new Fleet()); // Assuming Fleet is a concrete implementation of IFleet
+		game = TestFixtures.newGame(); // Assuming Fleet is a concrete implementation of IFleet
 	}
 
 	@AfterEach

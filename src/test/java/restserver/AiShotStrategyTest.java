@@ -19,7 +19,7 @@ class AiShotStrategyTest {
     void setUp() {
         strategy = new AiShotStrategy();
         // Instanciamos um jogo real com uma frota vazia para servir de contexto
-        game = new Game(new Fleet());
+        game = TestFixtures.newGame();
     }
 
     @Test
@@ -46,7 +46,7 @@ class AiShotStrategyTest {
     void testComputeShotsTargetPhase() {
         // 1. Simular que a IA acertou num navio em (5,5), mas não o afundou
         IPosition hitPosition = new Position(5, 5);
-        IGame.ShotResult hitResult = new IGame.ShotResult(true, false, new Barge(Compass.NORTH, hitPosition), false);
+        IGame.ShotResult hitResult = new IGame.ShotResult(true, false, new SingleCellShip(Compass.NORTH, hitPosition), false);
 
         // Injetamos esta jogada passada no histórico do jogo
         Move pastMove = new Move(1, List.of(hitPosition), List.of(hitResult));
