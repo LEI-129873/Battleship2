@@ -154,11 +154,11 @@ public class Move implements IMove {
 		}
 
 		// Criar o mapa para o JSON
-		Map<String, Object> response = new HashMap<>();
-		response.put("validShots", validShots);
-		response.put("outsideShots", outsideShots);
-		response.put("repeatedShots", repeatedShots);
-		response.put("missedShots", missedShots);
+		Map<String, Object> jsonFields = new HashMap<>();
+		jsonFields.put("validShots", validShots);
+		jsonFields.put("outsideShots", outsideShots);
+		jsonFields.put("repeatedShots", repeatedShots);
+		jsonFields.put("missedShots", missedShots);
 
 		// Criar a lista de barcos afundados
 		List<Map<String, Object>> sunkBoats = new ArrayList<>();
@@ -168,7 +168,7 @@ public class Move implements IMove {
 			boat.put("count", entry.getValue());
 			sunkBoats.add(boat);
 		}
-		response.put("sunkBoats", sunkBoats);
+		jsonFields.put("sunkBoats", sunkBoats);
 
 		// Criar a lista de acertos em barcos que não foram afundados
 		List<Map<String, Object>> boatHits = new ArrayList<>();
@@ -180,7 +180,7 @@ public class Move implements IMove {
 				boatHits.add(boat);
 			}
 		}
-		response.put("hitsOnBoats", boatHits);
+		jsonFields.put("hitsOnBoats", boatHits);
 
 		// Serializar o JSON utilizando Jackson
 		String jsonString;
@@ -190,7 +190,7 @@ public class Move implements IMove {
 		objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
 
 		try {
-			jsonString = objectMapper.writeValueAsString(response);
+			jsonString = objectMapper.writeValueAsString(jsonFields);
 		} catch (JsonProcessingException e) {
 			throw new RuntimeException("Erro ao serializar o JSON dos resultados da jogada", e);
 		}
