@@ -170,19 +170,7 @@ public class GameController {
 			dto.row         = String.valueOf(pos.getClassicRow());
 			dto.column      = pos.getClassicColumn();
 
-			if (!sr.valid()) {
-				dto.outcome = "INVALID";
-			} else if (sr.repeated()) {
-				dto.outcome = "REPEATED";
-			} else if (sr.ship() == null) {
-				dto.outcome = "MISS";
-			} else if (sr.sunk()) {
-				dto.outcome  = "SUNK";
-				dto.shipType = sr.ship().getCategory();
-			} else {
-				dto.outcome  = "HIT";
-				dto.shipType = sr.ship().getCategory();
-			}
+			fillOutcome(sr, dto);
 			results.add(dto);
 		}
 
@@ -194,6 +182,22 @@ public class GameController {
 		response.gameStatus    = "ONGOING";
 		response.winner        = null;
 		return response;
+	}
+
+	private static void fillOutcome(IGame.ShotResult sr, ShotResult dto) {
+		if (!sr.valid()) {
+			dto.outcome = "INVALID";
+		} else if (sr.repeated()) {
+			dto.outcome = "REPEATED";
+		} else if (sr.ship() == null) {
+			dto.outcome = "MISS";
+		} else if (sr.sunk()) {
+			dto.outcome  = "SUNK";
+			dto.shipType = sr.ship().getCategory();
+		} else {
+			dto.outcome  = "HIT";
+			dto.shipType = sr.ship().getCategory();
+		}
 	}
 
 	/** Convenience helper to build a JSON error response. */
