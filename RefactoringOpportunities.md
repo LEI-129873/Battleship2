@@ -2,7 +2,7 @@
 
 | Local | Cheiro no código | Refabricação | Aluno |
 |---|---|---|---|
-| Move::processEnemyFire (l. 106–150, `x > 1 ? "s" : ""` repetido) | Duplicated Code | Extract Method (`pluralSuffix(int count)`) | 129873 |
+| Move::processEnemyFire (l. 99–100, cálculo de tiros exteriores explicado por comentário) | Comments | Extract Method (`countOutsideShots`) | 129873 |
 | Move::processEnemyFire (l. 105, `validShots == 0 && repeatedShots > 0`) | Complex Conditional | Introduce Variable (`onlyRepeatedShots`) | 129873 |
 | Move::processEnemyFire (l. 117 e 126, literal `" + "`) | Magic String | Introduce Constant (`SHOT_SEPARATOR`) | 129873 |
 | Move::processEnemyFire (l. 158, variável `response`) | Uncommunicative Name | Rename (`jsonFields`) | 129873 |
