@@ -1,6 +1,8 @@
 package restserver;
 
 import battleship.*;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import restserver.Dtos.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,7 @@ import java.util.List;
 @RestController
 public class GameController {
 
+	public static final int MAX_COLUMN = 10;
 	private final GameRegistry registry;
 	private final CallbackClient callbackClient;
 	private final AiShotStrategy aiStrategy;
@@ -108,7 +111,8 @@ public class GameController {
 		// ── 3. Convert DTO positions → IPosition list ────────────────────────
 		List<IPosition> positions = new ArrayList<>();
 		for (ShotPosition sp : request.shots) {
-			if (sp.row == null || sp.row.isBlank() || sp.column < 1 || sp.column > 10) {
+			boolean invalidPosition = sp.row == null || sp.row.isBlank() || sp.column < 1 || sp.column > MAX_COLUMN;
+			if (invalidPosition) {
 				return error(HttpStatus.BAD_REQUEST,
 						"Invalid position: row='" + sp.row + "' column=" + sp.column);
 			}
@@ -117,17 +121,23 @@ public class GameController {
 
 		// ── 4. Fire student's shots at the AI's fleet (m1b logic) ────────────
 		IGame game = session.getGame();
-		ShotResponse m1bResponse = evaluateShots(positions, game, session);
+		ShotResponse turnResponse = evaluateShots(positions, game);
 
 		// ── 5. Check if student won (all AI ships sunk) ──────────────────────
+        @Nullable ResponseEntity<ShotResponse> turnResponse1 = null;
+		return finishTurn(gameId, game, session, turnResponse, turnResponse1);
+	}
+
+	private @NotNull ResponseEntity<ShotResponse> finishTurn(String gameId, IGame game, GameSession session, ShotResponse turnResponse, @Nullable ResponseEntity<ShotResponse> turnResponse1) {
 		if (game.getRemainingShips() == 0) {
 			session.markStudentWins();
-			m1bResponse.gameStatus = "GAME_OVER";
-			m1bResponse.winner     = "STUDENT_WINS";
+			turnResponse.gameStatus = "GAME_OVER";
+			turnResponse.winner     = "STUDENT_WINS";
 			System.out.printf("[%s] GAME OVER — student '%s' wins!%n",
 					gameId, session.getPlayerName());
-			return ResponseEntity.ok(m1bResponse);
+			turnResponse1 = ResponseEntity.ok(turnResponse);
 		}
+		if (turnResponse1 != null) return turnResponse1;
 
 		// ── 6. AI fires back — calls student's callback (m2a + m2b) ─────────
 		List<IPosition> aiShots = aiStrategy.computeShots(game);
@@ -140,7 +150,7 @@ public class GameController {
 		}
 
 		// ── 7. Return m1b to student ─────────────────────────────────────────
-		return ResponseEntity.ok(m1bResponse);
+		return ResponseEntity.ok(turnResponse);
 	}
 
 	// =========================================================================
@@ -152,8 +162,7 @@ public class GameController {
 	 * Delegates to the existing Game.fireSingleShot() so all existing logic is reused.
 	 */
 	private ShotResponse evaluateShots(List<IPosition> positions,
-									   IGame game,
-									   GameSession session) {
+									   IGame game) {
 		List<ShotResult> results = new ArrayList<>();
 		List<IGame.ShotResult> moveResults = new ArrayList<>();
 		List<IPosition> alreadyThisTurn = new ArrayList<>();
@@ -168,19 +177,7 @@ public class GameController {
 			dto.row         = String.valueOf(pos.getClassicRow());
 			dto.column      = pos.getClassicColumn();
 
-			if (!sr.valid()) {
-				dto.outcome = "INVALID";
-			} else if (sr.repeated()) {
-				dto.outcome = "REPEATED";
-			} else if (sr.ship() == null) {
-				dto.outcome = "MISS";
-			} else if (sr.sunk()) {
-				dto.outcome  = "SUNK";
-				dto.shipType = sr.ship().getCategory();
-			} else {
-				dto.outcome  = "HIT";
-				dto.shipType = sr.ship().getCategory();
-			}
+			fillOutcome(sr, dto);
 			results.add(dto);
 		}
 
@@ -192,6 +189,22 @@ public class GameController {
 		response.gameStatus    = "ONGOING";
 		response.winner        = null;
 		return response;
+	}
+
+	private static void fillOutcome(IGame.ShotResult sr, ShotResult dto) {
+		if (!sr.valid()) {
+			dto.outcome = "INVALID";
+		} else if (sr.repeated()) {
+			dto.outcome = "REPEATED";
+		} else if (sr.ship() == null) {
+			dto.outcome = "MISS";
+		} else if (sr.sunk()) {
+			dto.outcome  = "SUNK";
+			dto.shipType = sr.ship().getCategory();
+		} else {
+			dto.outcome  = "HIT";
+			dto.shipType = sr.ship().getCategory();
+		}
 	}
 
 	/** Convenience helper to build a JSON error response. */
