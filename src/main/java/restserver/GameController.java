@@ -119,16 +119,16 @@ public class GameController {
 
 		// ── 4. Fire student's shots at the AI's fleet (m1b logic) ────────────
 		IGame game = session.getGame();
-		ShotResponse m1bResponse = evaluateShots(positions, game, session);
+		ShotResponse turnResponse = evaluateShots(positions, game, session);
 
 		// ── 5. Check if student won (all AI ships sunk) ──────────────────────
 		if (game.getRemainingShips() == 0) {
 			session.markStudentWins();
-			m1bResponse.gameStatus = "GAME_OVER";
-			m1bResponse.winner     = "STUDENT_WINS";
+			turnResponse.gameStatus = "GAME_OVER";
+			turnResponse.winner     = "STUDENT_WINS";
 			System.out.printf("[%s] GAME OVER — student '%s' wins!%n",
 					gameId, session.getPlayerName());
-			return ResponseEntity.ok(m1bResponse);
+			return ResponseEntity.ok(turnResponse);
 		}
 
 		// ── 6. AI fires back — calls student's callback (m2a + m2b) ─────────
@@ -142,7 +142,7 @@ public class GameController {
 		}
 
 		// ── 7. Return m1b to student ─────────────────────────────────────────
-		return ResponseEntity.ok(m1bResponse);
+		return ResponseEntity.ok(turnResponse);
 	}
 
 	// =========================================================================
