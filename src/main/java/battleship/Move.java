@@ -15,6 +15,7 @@ import java.util.*;
  */
 public class Move implements IMove {
 
+	public static final String SHOT_SEPARATOR = " + ";
 	//-------------------------------------------------------------------
 	private final int number;
 	private final List<IPosition> shots;
@@ -114,7 +115,7 @@ public class Move implements IMove {
 				if (!sunkBoatsCount.isEmpty()) {
 					for (Map.Entry<String, Integer> entry : sunkBoatsCount.entrySet()) {
                         int count = entry.getValue();
-						output.append(count).append(" ").append(entry.getKey()).append(count > 1 ? "s" : "").append(" ao fundo").append(" + ");
+						output.append(count).append(" ").append(entry.getKey()).append(count > 1 ? "s" : "").append(" ao fundo").append(SHOT_SEPARATOR);
 					}
 				}
 
@@ -123,7 +124,7 @@ public class Move implements IMove {
 						String boatName = entry.getKey();
 						int hits = entry.getValue();
 						if (!sunkBoatsCount.containsKey(boatName)) {
-							output.append(hits).append(" tiro").append(hits > 1 ? "s" : "").append(" num(a) ").append(boatName).append(" + ");
+							output.append(hits).append(" tiro").append(hits > 1 ? "s" : "").append(" num(a) ").append(boatName).append(SHOT_SEPARATOR);
 						}
 					}
 				}
