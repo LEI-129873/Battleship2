@@ -97,7 +97,7 @@ public class Move implements IMove {
 		}
 
 		// Determinar número de tiros fora do tabuleiro
-		int outsideShots = Game.NUMBER_SHOTS - validShots - repeatedShots;
+		int outsideShots = countOutsideShots(validShots, repeatedShots);
 
 		if (verbose) {
 			// Construção da mensagem de saída
@@ -202,5 +202,9 @@ public class Move implements IMove {
 
 		// Retornar o JSON
 		return jsonString;
+	}
+
+	private static int countOutsideShots(int validShots, int repeatedShots) {
+		return Game.NUMBER_SHOTS - validShots - repeatedShots;
 	}
 }
