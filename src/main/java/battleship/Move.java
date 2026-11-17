@@ -105,17 +105,17 @@ public class Move implements IMove {
 
 			boolean onlyRepeatedShots = validShots == 0 && repeatedShots > 0;
 			if (onlyRepeatedShots) {
-				output.append(repeatedShots).append(" tiro").append(repeatedShots > 1 ? "s" : "").append(" repetido").append(repeatedShots > 1 ? "s" : "");
+				output.append(repeatedShots).append(" tiro").append(pluralSuffix(repeatedShots)).append(" repetido").append(pluralSuffix(repeatedShots));
 			} else {
 				if (validShots > 0) {
-					output.append(validShots).append(" tiro").append(validShots > 1 ? "s" : "").append(" válido").append(validShots > 1 ? "s" : "").append(": ");
+					output.append(validShots).append(" tiro").append(pluralSuffix(validShots)).append(" válido").append(pluralSuffix(validShots)).append(": ");
 				}
 
 				// Atualizar lógica para contar múltiplos barcos afundados do mesmo tipo
 				if (!sunkBoatsCount.isEmpty()) {
 					for (Map.Entry<String, Integer> entry : sunkBoatsCount.entrySet()) {
                         int count = entry.getValue();
-						output.append(count).append(" ").append(entry.getKey()).append(count > 1 ? "s" : "").append(" ao fundo").append(SHOT_SEPARATOR);
+						output.append(count).append(" ").append(entry.getKey()).append(pluralSuffix(count)).append(" ao fundo").append(SHOT_SEPARATOR);
 					}
 				}
 
@@ -124,13 +124,13 @@ public class Move implements IMove {
 						String boatName = entry.getKey();
 						int hits = entry.getValue();
 						if (!sunkBoatsCount.containsKey(boatName)) {
-							output.append(hits).append(" tiro").append(hits > 1 ? "s" : "").append(" num(a) ").append(boatName).append(SHOT_SEPARATOR);
+							output.append(hits).append(" tiro").append(pluralSuffix(hits)).append(" num(a) ").append(boatName).append(SHOT_SEPARATOR);
 						}
 					}
 				}
 
 				if (missedShots > 0) {
-					output.append(missedShots).append(" tiro").append(missedShots > 1 ? "s" : "").append(" na água");
+					output.append(missedShots).append(" tiro").append(pluralSuffix(missedShots)).append(" na água");
 				} else if (!sunkBoatsCount.isEmpty() || !hitsPerBoat.isEmpty()) {
 					output.setLength(output.length() - 2); // Remover o "+" final
 				}
@@ -139,7 +139,7 @@ public class Move implements IMove {
 					if (validShots > 0) {
 						output.append(", ");
 					}
-					output.append(repeatedShots).append(" tiro").append(repeatedShots > 1 ? "s" : "").append(" repetido").append(repeatedShots > 1 ? "s" : "");
+					output.append(repeatedShots).append(" tiro").append(pluralSuffix(repeatedShots)).append(" repetido").append(pluralSuffix(repeatedShots));
 				}
 			}
 
@@ -148,7 +148,7 @@ public class Move implements IMove {
 				if (!output.isEmpty()) {
 					output.append(", ");
 				}
-				output.append(outsideShots).append(" tiro").append(outsideShots > 1 ? "s" : "").append(" exterior").append(outsideShots > 1 ? "es" : "");
+				output.append(outsideShots).append(" tiro").append(pluralSuffix(outsideShots)).append(" exterior").append(outsideShots > 1 ? "es" : "");
 			}
 
 			// Imprimir na consola se verbose for true
@@ -202,5 +202,9 @@ public class Move implements IMove {
 
 		// Retornar o JSON
 		return jsonString;
+	}
+
+	private static String pluralSuffix(int count) {
+		return count > 1 ? "s" : "";
 	}
 }
