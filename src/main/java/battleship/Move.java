@@ -112,9 +112,8 @@ public class Move implements IMove {
 				// Atualizar lógica para contar múltiplos barcos afundados do mesmo tipo
 				if (!sunkBoatsCount.isEmpty()) {
 					for (Map.Entry<String, Integer> entry : sunkBoatsCount.entrySet()) {
-						String boatName = entry.getKey();
-						int count = entry.getValue();
-						output.append(count).append(" ").append(boatName).append(count > 1 ? "s" : "").append(" ao fundo").append(" + ");
+                        int count = entry.getValue();
+						output.append(count).append(" ").append(entry.getKey()).append(count > 1 ? "s" : "").append(" ao fundo").append(" + ");
 					}
 				}
 
