@@ -1,6 +1,7 @@
 package restserver;
 
 import battleship.*;
+import org.jetbrains.annotations.Nullable;
 import restserver.Dtos.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -122,14 +123,8 @@ public class GameController {
 		ShotResponse turnResponse = evaluateShots(positions, game);
 
 		// ── 5. Check if student won (all AI ships sunk) ──────────────────────
-		if (game.getRemainingShips() == 0) {
-			session.markStudentWins();
-			turnResponse.gameStatus = "GAME_OVER";
-			turnResponse.winner     = "STUDENT_WINS";
-			System.out.printf("[%s] GAME OVER — student '%s' wins!%n",
-					gameId, session.getPlayerName());
-			return ResponseEntity.ok(turnResponse);
-		}
+		ResponseEntity<ShotResponse> turnResponse1 = completeTurn(gameId, game, session, turnResponse);
+		if (turnResponse1 != null) return turnResponse1;
 
 		// ── 6. AI fires back — calls student's callback (m2a + m2b) ─────────
 		List<IPosition> aiShots = aiStrategy.computeShots(game);
@@ -143,6 +138,18 @@ public class GameController {
 
 		// ── 7. Return m1b to student ─────────────────────────────────────────
 		return ResponseEntity.ok(turnResponse);
+	}
+
+	private static @Nullable ResponseEntity<ShotResponse> completeTurn(String gameId, IGame game, GameSession session, ShotResponse turnResponse) {
+		if (game.getRemainingShips() == 0) {
+			session.markStudentWins();
+			turnResponse.gameStatus = "GAME_OVER";
+			turnResponse.winner     = "STUDENT_WINS";
+			System.out.printf("[%s] GAME OVER — student '%s' wins!%n",
+					gameId, session.getPlayerName());
+			return ResponseEntity.ok(turnResponse);
+		}
+		return null;
 	}
 
 	// =========================================================================
