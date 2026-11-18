@@ -42,17 +42,7 @@ public class AiShotStrategy {
 		List<IPosition> chosen = new ArrayList<>();
 
 		// ── Phase 2 TARGET: prioritise neighbours of existing hits ──────────
-		if (!hitTargets.isEmpty()) {
-			for (IPosition hit : hitTargets) {
-				if (chosen.size() >= Game.NUMBER_SHOTS) break;
-				for (IPosition neighbour : hit.adjacentPositions()) {
-					if (chosen.size() >= Game.NUMBER_SHOTS) break;
-					if (!alreadyShot.contains(neighbour) && !chosen.contains(neighbour)) {
-						chosen.add(neighbour);
-					}
-				}
-			}
-		}
+		addNeighboursOfHits(hitTargets, chosen, alreadyShot);
 
 		// ── Phase 1 HUNT: fill remaining slots from checkerboard pattern ────
 		if (chosen.size() < Game.NUMBER_SHOTS) {
@@ -81,6 +71,20 @@ public class AiShotStrategy {
 		System.out.println();
 
 		return chosen;
+	}
+
+	private static void addNeighboursOfHits(List<IPosition> hitTargets, List<IPosition> chosen, Set<IPosition> alreadyShot) {
+		if (!hitTargets.isEmpty()) {
+			for (IPosition hit : hitTargets) {
+				if (chosen.size() >= Game.NUMBER_SHOTS) break;
+				for (IPosition neighbour : hit.adjacentPositions()) {
+					if (chosen.size() >= Game.NUMBER_SHOTS) break;
+					if (!alreadyShot.contains(neighbour) && !chosen.contains(neighbour)) {
+						chosen.add(neighbour);
+					}
+				}
+			}
+		}
 	}
 
 	// ── Private helpers ───────────────────────────────────────────────────────
