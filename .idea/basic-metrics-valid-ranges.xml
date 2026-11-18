@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BasicMetricsValidRanges">
+    <option name="unControlledMetrics">
+      <map>
+        <entry key="LCOM">
+          <value>
+            <BasicMetricsValidRangeStub>
+              <option name="description" value="Lack Of Cohesion Of Methods" />
+              <option name="highBound" value="75" />
+              <option name="level" value="Class Level" />
+              <option name="name" value="LCOM" />
+              <option name="regularBound" value="51" />
+              <option name="veryHighBound" value="90" />
+            </BasicMetricsValidRangeStub>
+          </value>
+        </entry>
+        <entry key="MPC">
+          <value>
+            <BasicMetricsValidRangeStub>
+              <option name="description" value="Message Passing Coupling" />
+              <option name="highBound" value="15" />
+              <option name="level" value="Class Level" />
+              <option name="name" value="MPC" />
+              <option name="regularBound" value="11" />
+              <option name="veryHighBound" value="20" />
+            </BasicMetricsValidRangeStub>
+          </value>
+        </entry>
+        <entry key="NOAM">
+          <value>
+            <BasicMetricsValidRangeStub>
+              <option name="description" value="Number Of Added Methods" />
+              <option name="highBound" value="5" />
+              <option name="level" value="Class Level" />
+              <option name="name" value="NOAM" />
+              <option name="regularBound" value="3" />
+              <option name="veryHighBound" value="7" />
+            </BasicMetricsValidRangeStub>
+          </value>
+        </entry>
+        <entry key="NOL">
+          <value>
+            <BasicMetricsValidRangeStub>
+              <option name="description" value="Number Of Loops" />
+              <option name="highBound" value="7" />
+              <option name="level" value="Method Level" />
+              <option name="name" value="NOL" />
+              <option name="regularBound" value="5" />
+              <option name="veryHighBound" value="9" />
+            </BasicMetricsValidRangeStub>
+          </value>
+        </entry>
+        <entry key="NOO">
+          <value>
+            <BasicMetricsValidRangeStub>
+              <option name="description" value="Number Of Operations" />
+              <option name="highBound" value="50" />
+              <option name="level" value="Class Level" />
+              <option name="name" value="NOO" />
+              <option name="regularBound" value="30" />
+              <option name="veryHighBound" value="70" />
+            </BasicMetricsValidRangeStub>
+          </value>
+        </entry>
+        <entry key="SIZE2">
+          <value>
+            <BasicMetricsValidRangeStub>
+              <option name="description" value="Number Of Attributes And Methods" />
+              <option name="highBound" value="161" />
+              <option name="level" value="Class Level" />
+              <option name="name" value="SIZE2" />
+              <option name="regularBound" value="131" />
+              <option name="veryHighBound" value="181" />
+            </BasicMetricsValidRangeStub>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
