@@ -37,22 +37,12 @@ public class AiShotStrategy {
 		}
 
 		// Collect hit-but-not-sunk positions (TARGET phase candidates)
-		List<IPosition> hitTargets = getHitButNotSunkPositions(game, alreadyShot);
+		List<IPosition> hitTargets = getHitButNotSunkPositions(game);
 
 		List<IPosition> chosen = new ArrayList<>();
 
 		// ── Phase 2 TARGET: prioritise neighbours of existing hits ──────────
-		if (!hitTargets.isEmpty()) {
-			for (IPosition hit : hitTargets) {
-				if (chosen.size() >= Game.NUMBER_SHOTS) break;
-				for (IPosition neighbour : hit.adjacentPositions()) {
-					if (chosen.size() >= Game.NUMBER_SHOTS) break;
-					if (!alreadyShot.contains(neighbour) && !chosen.contains(neighbour)) {
-						chosen.add(neighbour);
-					}
-				}
-			}
-		}
+		addNeighboursOfHits(hitTargets, chosen, alreadyShot);
 
 		// ── Phase 1 HUNT: fill remaining slots from checkerboard pattern ────
 		if (chosen.size() < Game.NUMBER_SHOTS) {
@@ -83,6 +73,20 @@ public class AiShotStrategy {
 		return chosen;
 	}
 
+	private static void addNeighboursOfHits(List<IPosition> hitTargets, List<IPosition> chosen, Set<IPosition> alreadyShot) {
+		if (!hitTargets.isEmpty()) {
+			for (IPosition hit : hitTargets) {
+				if (chosen.size() >= Game.NUMBER_SHOTS) break;
+				for (IPosition neighbour : hit.adjacentPositions()) {
+					if (chosen.size() >= Game.NUMBER_SHOTS) break;
+					if (!alreadyShot.contains(neighbour) && !chosen.contains(neighbour)) {
+						chosen.add(neighbour);
+					}
+				}
+			}
+		}
+	}
+
 	// ── Private helpers ───────────────────────────────────────────────────────
 
 	/**
@@ -92,15 +96,16 @@ public class AiShotStrategy {
 	 * we use a simple heuristic: a position is a "live target" if it was hit and at
 	 * least one of its orthogonal neighbours has NOT been shot yet.
 	 */
-	private List<IPosition> getHitButNotSunkPositions(IGame game, Set<IPosition> alreadyShot) {
+	private List<IPosition> getHitButNotSunkPositions(IGame game) {
 
 		// Gather all positions the AI hit
 		List<IPosition> hits = new ArrayList<>();
 		for (IMove move : game.getAlienMoves()) {
 			for (int i = 0; i < move.getShots().size(); i++) {
-				IGame.ShotResult result = move.getShotResults().isEmpty()
+				List<IGame.ShotResult> results = move.getShotResults();
+				IGame.ShotResult result = results.isEmpty()
 						? null
-						: (i < move.getShotResults().size() ? move.getShotResults().get(i) : null);
+						: (i < results.size() ? results.get(i) : null);
 
 				// If we have result metadata, use it precisely
 				if (result != null && result.valid() && !result.repeated()
