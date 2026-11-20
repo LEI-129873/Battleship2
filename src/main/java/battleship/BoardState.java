@@ -33,9 +33,9 @@ public final class BoardState {
 					continue;
 				CellState current = board[shot.getRow()][shot.getColumn()];
 				if (current == CellState.WATER)
-					set(board, shot, CellState.MISS);
+					markCell(board, shot, CellState.MISS);
 				else if (current == CellState.SHIP)
-					set(board, shot, CellState.HIT);
+					markCell(board, shot, CellState.HIT);
 			}
 
 		markShips(board, fleet.getSunkShips(), CellState.SUNK);
@@ -66,12 +66,12 @@ public final class BoardState {
 					continue;
 
 				if (result.ship() == null)
-					set(board, shot, CellState.MISS);
+					markCell(board, shot, CellState.MISS);
 				else if (result.sunk())
 					for (IPosition pos : result.ship().getPositions())
-						set(board, pos, CellState.SUNK);
+						markCell(board, pos, CellState.SUNK);
 				else if (board[shot.getRow()][shot.getColumn()] != CellState.SUNK)
-					set(board, shot, CellState.HIT);
+					markCell(board, shot, CellState.HIT);
 			}
 		}
 		return board;
@@ -80,7 +80,7 @@ public final class BoardState {
 	private static void markShips(CellState[][] board, List<IShip> ships, CellState state) {
 		for (IShip ship : ships)
 			for (IPosition pos : ship.getPositions())
-				set(board, pos, state);
+				markCell(board, pos, state);
 	}
 
 	private static CellState[][] emptyBoard() {
@@ -90,7 +90,7 @@ public final class BoardState {
 		return board;
 	}
 
-	private static void set(CellState[][] board, IPosition pos, CellState state) {
+	private static void markCell(CellState[][] board, IPosition pos, CellState state) {
 		if (pos.isInside())
 			board[pos.getRow()][pos.getColumn()] = state;
 	}
