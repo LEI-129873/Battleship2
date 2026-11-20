@@ -61,7 +61,8 @@ public final class BoardState {
 			for (int i = 0; i < shots.size() && i < results.size(); i++) {
 				IPosition shot = shots.get(i);
 				IGame.ShotResult result = results.get(i);
-				if (!shot.isInside() || !result.valid() || result.repeated())
+				boolean ignoredShot = !shot.isInside() || !result.valid() || result.repeated();
+				if (ignoredShot)
 					continue;
 
 				if (result.ship() == null)
