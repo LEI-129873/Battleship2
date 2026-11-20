@@ -35,9 +35,6 @@ public class GameSession {
 	 */
 	private final IGame game;
 
-	/** Number of shots fired per turn (matches Game.NUMBER_SHOTS = 3). */
-	private final int shotsPerTurn;
-
 	/** True once one fleet is completely sunk. */
 	private boolean gameOver;
 
@@ -51,7 +48,6 @@ public class GameSession {
 		this.playerName  = playerName;
 		this.callbackUrl = callbackUrl;
 		this.game        = new Game(Fleet.createRandom()); // AI places its own fleet randomly
-		this.shotsPerTurn = Game.NUMBER_SHOTS;
 		this.gameOver    = false;
 		this.winner      = null;
 	}
@@ -62,7 +58,7 @@ public class GameSession {
 	public String getPlayerName()  { return playerName; }
 	public String getCallbackUrl() { return callbackUrl; }
 	public IGame  getGame()        { return game; }
-	public int    getShotsPerTurn(){ return shotsPerTurn; }
+	public int    getShotsPerTurn(){ return Game.NUMBER_SHOTS; }
 	public boolean isGameOver()    { return gameOver; }
 	public String getWinner()      { return winner; }
 
