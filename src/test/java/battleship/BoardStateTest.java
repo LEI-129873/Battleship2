@@ -91,4 +91,57 @@ public class BoardStateTest {
 		long distinct = java.util.Arrays.stream(CellState.values()).map(CellState::getSymbol).distinct().count();
 		assertEquals(CellState.values().length, distinct);
 	}
+
+	@Test
+	@DisplayName("ownBoard ignora tiros do adversário fora do tabuleiro e não altera células já atingidas")
+	void ownBoardIgnoresOutsideAlienShots() {
+		List<IMove> alienMoves = List.of(new Move(1,
+				List.of(new Position(-1, 0), new Position(9, 9), new Position(9, 9)),
+				List.of(new IGame.ShotResult(false, false, null, false),
+						new IGame.ShotResult(true, false, null, false),
+						new IGame.ShotResult(true, true, null, false))));
+		CellState[][] own = BoardState.ownBoard(fleet, alienMoves);
+		assertAll(
+				() -> assertEquals(CellState.MISS, own[9][9], "Error: expected MISS at J10 but got " + own[9][9]),
+				() -> assertEquals(CellState.SHIP, own[0][0], "Error: expected SHIP at A1 but got " + own[0][0]));
+	}
+
+	@Test
+	@DisplayName("opponentBoard ignora tiros sem resultado, inválidos dentro do tabuleiro e não reescreve um afundado")
+	void opponentBoardEdgeCases() {
+		IShip caravel = new Caravel(Compass.EAST, new Position(3, 3)); // D4, D5
+		List<IMove> myMoves = List.of(
+				new Move(1, List.of(new Position(3, 3), new Position(2, 2)),
+						List.of(new IGame.ShotResult(true, false, caravel, true))),
+				new Move(2, List.of(new Position(6, 6), new Position(3, 4)),
+						List.of(new IGame.ShotResult(false, false, null, false),
+								new IGame.ShotResult(true, false, caravel, false))));
+		CellState[][] opponent = BoardState.opponentBoard(myMoves);
+		assertAll(
+				() -> assertEquals(CellState.WATER, opponent[2][2], "Error: expected WATER for a shot without result but got " + opponent[2][2]),
+				() -> assertEquals(CellState.WATER, opponent[6][6], "Error: expected WATER for an invalid shot but got " + opponent[6][6]),
+				() -> assertEquals(CellState.SUNK, opponent[3][4], "Error: expected SUNK to be kept at D5 but got " + opponent[3][4]));
+	}
+
+	@Test
+	@DisplayName("opponentBoard ignora posições de um navio afundado que caiam fora do tabuleiro")
+	void opponentBoardSunkShipPartlyOutside() {
+		IShip caravel = new Caravel(Compass.EAST, new Position(0, 9)); // A10 e uma posição fora
+		List<IMove> myMoves = List.of(new Move(1, List.of(new Position(0, 9)),
+				List.of(new IGame.ShotResult(true, false, caravel, true))));
+		CellState[][] opponent = BoardState.opponentBoard(myMoves);
+		assertEquals(CellState.SUNK, opponent[0][9], "Error: expected SUNK at A10 but got " + opponent[0][9]);
+	}
+
+	@Test
+	@DisplayName("ownBoard e opponentBoard rejeitam argumentos nulos (AssertionError)")
+	void nullArgumentsAreRejected() {
+		assertAll(
+				() -> assertThrows(AssertionError.class, () -> BoardState.ownBoard(null, List.of()),
+						"Error: expected AssertionError for a null fleet"),
+				() -> assertThrows(AssertionError.class, () -> BoardState.ownBoard(fleet, null),
+						"Error: expected AssertionError for null alien moves"),
+				() -> assertThrows(AssertionError.class, () -> BoardState.opponentBoard(null),
+						"Error: expected AssertionError for null moves"));
+	}
 }

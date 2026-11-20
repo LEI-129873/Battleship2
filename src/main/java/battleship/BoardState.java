@@ -25,9 +25,7 @@ public final class BoardState {
 
 		CellState[][] board = emptyBoard();
 
-		for (IShip ship : fleet.getShips())
-			for (IPosition pos : ship.getPositions())
-				set(board, pos, CellState.SHIP);
+		markShips(board, fleet.getShips(), CellState.SHIP);
 
 		for (IMove move : alienMoves)
 			for (IPosition shot : move.getShots()) {
@@ -35,14 +33,12 @@ public final class BoardState {
 					continue;
 				CellState current = board[shot.getRow()][shot.getColumn()];
 				if (current == CellState.WATER)
-					set(board, shot, CellState.MISS);
+					markCell(board, shot, CellState.MISS);
 				else if (current == CellState.SHIP)
-					set(board, shot, CellState.HIT);
+					markCell(board, shot, CellState.HIT);
 			}
 
-		for (IShip ship : fleet.getSunkShips())
-			for (IPosition pos : ship.getPositions())
-				set(board, pos, CellState.SUNK);
+		markShips(board, fleet.getSunkShips(), CellState.SUNK);
 
 		return board;
 	}
@@ -65,19 +61,26 @@ public final class BoardState {
 			for (int i = 0; i < shots.size() && i < results.size(); i++) {
 				IPosition shot = shots.get(i);
 				IGame.ShotResult result = results.get(i);
-				if (!shot.isInside() || !result.valid() || result.repeated())
+				boolean ignoredShot = !shot.isInside() || !result.valid() || result.repeated();
+				if (ignoredShot)
 					continue;
 
 				if (result.ship() == null)
-					set(board, shot, CellState.MISS);
+					markCell(board, shot, CellState.MISS);
 				else if (result.sunk())
 					for (IPosition pos : result.ship().getPositions())
-						set(board, pos, CellState.SUNK);
+						markCell(board, pos, CellState.SUNK);
 				else if (board[shot.getRow()][shot.getColumn()] != CellState.SUNK)
-					set(board, shot, CellState.HIT);
+					markCell(board, shot, CellState.HIT);
 			}
 		}
 		return board;
+	}
+
+	private static void markShips(CellState[][] board, List<IShip> ships, CellState state) {
+		for (IShip ship : ships)
+			for (IPosition pos : ship.getPositions())
+				markCell(board, pos, state);
 	}
 
 	private static CellState[][] emptyBoard() {
@@ -87,7 +90,7 @@ public final class BoardState {
 		return board;
 	}
 
-	private static void set(CellState[][] board, IPosition pos, CellState state) {
+	private static void markCell(CellState[][] board, IPosition pos, CellState state) {
 		if (pos.isInside())
 			board[pos.getRow()][pos.getColumn()] = state;
 	}
