@@ -15,6 +15,7 @@ import java.util.*;
  */
 public class Move implements IMove {
 
+	public static final String SHOT_SEPARATOR = " + ";
 	//-------------------------------------------------------------------
 	private final int number;
 	private final List<IPosition> shots;
@@ -96,13 +97,14 @@ public class Move implements IMove {
 		}
 
 		// Determinar número de tiros fora do tabuleiro
-		int outsideShots = Game.NUMBER_SHOTS - validShots - repeatedShots;
+		int outsideShots = countOutsideShots(validShots, repeatedShots);
 
 		if (verbose) {
 			// Construção da mensagem de saída
 			StringBuilder output = new StringBuilder();
 
-			if (validShots == 0 && repeatedShots > 0) {
+			boolean onlyRepeatedShots = validShots == 0 && repeatedShots > 0;
+			if (onlyRepeatedShots) {
 				output.append(repeatedShots).append(" tiro").append(repeatedShots > 1 ? "s" : "").append(" repetido").append(repeatedShots > 1 ? "s" : "");
 			} else {
 				if (validShots > 0) {
@@ -112,9 +114,8 @@ public class Move implements IMove {
 				// Atualizar lógica para contar múltiplos barcos afundados do mesmo tipo
 				if (!sunkBoatsCount.isEmpty()) {
 					for (Map.Entry<String, Integer> entry : sunkBoatsCount.entrySet()) {
-						String boatName = entry.getKey();
-						int count = entry.getValue();
-						output.append(count).append(" ").append(boatName).append(count > 1 ? "s" : "").append(" ao fundo").append(" + ");
+                        int count = entry.getValue();
+						output.append(count).append(" ").append(entry.getKey()).append(count > 1 ? "s" : "").append(" ao fundo").append(SHOT_SEPARATOR);
 					}
 				}
 
@@ -123,7 +124,7 @@ public class Move implements IMove {
 						String boatName = entry.getKey();
 						int hits = entry.getValue();
 						if (!sunkBoatsCount.containsKey(boatName)) {
-							output.append(hits).append(" tiro").append(hits > 1 ? "s" : "").append(" num(a) ").append(boatName).append(" + ");
+							output.append(hits).append(" tiro").append(hits > 1 ? "s" : "").append(" num(a) ").append(boatName).append(SHOT_SEPARATOR);
 						}
 					}
 				}
@@ -155,11 +156,11 @@ public class Move implements IMove {
 		}
 
 		// Criar o mapa para o JSON
-		Map<String, Object> response = new HashMap<>();
-		response.put("validShots", validShots);
-		response.put("outsideShots", outsideShots);
-		response.put("repeatedShots", repeatedShots);
-		response.put("missedShots", missedShots);
+		Map<String, Object> jsonFields = new HashMap<>();
+		jsonFields.put("validShots", validShots);
+		jsonFields.put("outsideShots", outsideShots);
+		jsonFields.put("repeatedShots", repeatedShots);
+		jsonFields.put("missedShots", missedShots);
 
 		// Criar a lista de barcos afundados
 		List<Map<String, Object>> sunkBoats = new ArrayList<>();
@@ -169,7 +170,7 @@ public class Move implements IMove {
 			boat.put("count", entry.getValue());
 			sunkBoats.add(boat);
 		}
-		response.put("sunkBoats", sunkBoats);
+		jsonFields.put("sunkBoats", sunkBoats);
 
 		// Criar a lista de acertos em barcos que não foram afundados
 		List<Map<String, Object>> boatHits = new ArrayList<>();
@@ -181,7 +182,7 @@ public class Move implements IMove {
 				boatHits.add(boat);
 			}
 		}
-		response.put("hitsOnBoats", boatHits);
+		jsonFields.put("hitsOnBoats", boatHits);
 
 		// Serializar o JSON utilizando Jackson
 		String jsonString;
@@ -191,7 +192,7 @@ public class Move implements IMove {
 		objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
 
 		try {
-			jsonString = objectMapper.writeValueAsString(response);
+			jsonString = objectMapper.writeValueAsString(jsonFields);
 		} catch (JsonProcessingException e) {
 			throw new RuntimeException("Erro ao serializar o JSON dos resultados da jogada", e);
 		}
@@ -201,5 +202,9 @@ public class Move implements IMove {
 
 		// Retornar o JSON
 		return jsonString;
+	}
+
+	private static int countOutsideShots(int validShots, int repeatedShots) {
+		return Game.NUMBER_SHOTS - validShots - repeatedShots;
 	}
 }
