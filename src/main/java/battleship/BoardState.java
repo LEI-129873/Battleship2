@@ -25,9 +25,7 @@ public final class BoardState {
 
 		CellState[][] board = emptyBoard();
 
-		for (IShip ship : fleet.getShips())
-			for (IPosition pos : ship.getPositions())
-				set(board, pos, CellState.SHIP);
+		markShips(board, fleet.getShips(), CellState.SHIP);
 
 		for (IMove move : alienMoves)
 			for (IPosition shot : move.getShots()) {
@@ -40,9 +38,7 @@ public final class BoardState {
 					set(board, shot, CellState.HIT);
 			}
 
-		for (IShip ship : fleet.getSunkShips())
-			for (IPosition pos : ship.getPositions())
-				set(board, pos, CellState.SUNK);
+		markShips(board, fleet.getSunkShips(), CellState.SUNK);
 
 		return board;
 	}
@@ -78,6 +74,12 @@ public final class BoardState {
 			}
 		}
 		return board;
+	}
+
+	private static void markShips(CellState[][] board, List<IShip> ships, CellState state) {
+		for (IShip ship : ships)
+			for (IPosition pos : ship.getPositions())
+				set(board, pos, state);
 	}
 
 	private static CellState[][] emptyBoard() {
